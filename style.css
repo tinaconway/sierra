@@ -1,3 +1,130 @@
+* {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  box-sizing: border-box;
+  font-family: 'Oswald', serif;
+}
+html {
+  background: url(Pokerbackdrop.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.bigChip {
+  width: 400px;
+  height: 400px;
+  background-color: #f8f6e9;
+  border-radius: 100%;
+  margin: 0 auto;
+}
+
+.profile {
+  height: 50px;
+  background-color: #f8f6e9;
+  width: 100%;
+}
+
+.chipBox {
+  width: 100%;
+  display: flex;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.mainContent {
+  width: 80%;
+  margin: 0 auto;
+  background-color: #f8f6e9;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.toWho {
+  width: 100%;
+  margin: 0 auto;
+  height: 50px;
+}
+
+.fa-user {
+  width: 20%;
+  height: 50px;
+  color: black;
+  float: left;
+  display: flex;
+  font-size: 2em;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputArea {
+  width: 100%;
+  height: 100%;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.toWhoTxt {
+  width: 80%;
+  float: left;
+}
+
+.forWhat {
+  width: 100%;
+  margin: 0 auto;
+  height: 200px;
+  margin-top: 20px;
+}
+
+.howMuch {
+  width: 100%;
+  margin: 0 auto;
+  height: 50px;
+  margin-top: 20px;
+}
+
+.howMuchTxt {
+  width: 40%;
+  height: 100%;
+}
+
+.chipTxt {
+  width: 30%;
+  height: 100%;
+  margin-left: 10px;
+  font-size: 2em;
+
+}
+
+.fa-plus-circle {
+  font-size: 2em;
+  opacity: .5;
+  float: right;
+  margin-top: 30px;
+}
+
+.fa-plus-circle:hover {
+  opacity: 1;
+}
+
+.companyInfo {
+  width: 100%;
+  height: 50px;
+  margin-top: 20px;
+  color: white;
+  opacity: .5;
+  text-align: center;
+}
+=======
+
+
+/* TINA */
+.getChips {
+  text-align: center;
+}
+
 html {
   width: 100%;
   height: 100%; }
@@ -18,7 +145,9 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
   height: 100%;
   background-color: #0f2115;
   display: block; }
-
+.mainWrapper {
+  display: block;
+}
 .contentWrap {
   display: block; }
 
@@ -156,3 +285,24 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
     width: 150px; }
 
 /*# sourceMappingURL=style.css.map */
+
+
+.headBox {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+          flex-direction: row;
+}

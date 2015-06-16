@@ -1,5 +1,10 @@
 var array = [];
 
+//TINA
+var date = new Date();
+var lastClickedMS = date.setDate(1);
+
+
 
 $(document).ready (function() {
   page.init();
@@ -37,6 +42,9 @@ var page = {
       event.preventDefault();
       page.loadAccount();  // insert function to add name & chip total to page;
     });
+
+    //TINA
+    $('.getChips').on('click', $('.clickChip'), page.chipAllotment);
 
   },
 
@@ -125,6 +133,38 @@ var page = {
 
     getTmpl: function (name) {
     return templates[name];
+
+  },
+  //TINA
+  chipAllotment: function () {
+    var newClicked = new Date();
+    // Convert date to milliseconds
+    var newClickedMS = newClicked.getTime()
+    // The number of milliseconds in one day
+    var oneDay = 1000 * 60 * 60 * 24;
+    // Calculate the difference in milliseconds
+    var differenceMS = Math.abs(newClickedMS - lastClickedMS)
+    // Convert back to days
+    var numOfDays = Math.round(differenceMS/oneDay);
+
+    if (numOfDays >=7) {
+      // ADD 5 CHIPS TO USER
+      var postId =
+      $.ajax({
+        url: page.accountUrl + '/' + postId,
+        method: 'PUT',
+        success: function (data) {
+
+        },
+        error: function (err) {
+        }
+      })
+    }
+    else {
+      alert("You have already claimed your chips for the week!")
+    }
+    dateClickedMS = newClickedMS;
   }
 
-}
+
+};
