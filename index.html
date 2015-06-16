@@ -4,24 +4,57 @@
   <meta charset="UTF-8">
   <title>Chipr</title>
   <link href='http://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bower_components/normalize.css/normalize.css">
   <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="mainWrapper hidden">
-  <div class="profile">
-    <!-- append profile template here-->
+
+<!-- Sam Added -->
+  <div class="pageWrapper">
+  <div class="contentWidth">
+    <div class="title">
+      <h1>Chipr</h1>
+    </div>
+    <div class="loginWrap">
+      <div class="loginScreen">
+        <form class="signupForm" id="userNameForm"><i class="fa fa-life-ring"></i></i><input id="userNameInput" name="user" type="text" placeholder="Username" class="login userInput"></input></form>
+        <form class="signupForm" id="passwordForm"><i class="fa fa-unlock"></i><input id="passwordInput" name="pass" type="password" placeholder="Password" class="login passwordInput"></input></form>
+      </div>
+      <div class="signUpWrap">
+        <form><button id="logInButton" class="btn btn-default btn-md">Log In</button></form>
+        <form><button id="signUpButton" class="btn btn-default btn-md">Sign Up</button></form>
+      </div>
+    </div>
   </div>
-  <span class="chipBox"><div class="bigChip">
-  </div></span>
-  <ul class="mainContent">
-    <li class="toWho"><div class="fa fa-user"></div><input class="inputArea toWhoTxt" type="text" name="reciever" placeholder="to who?" /></li>
-    <li class="forWhat"><input class="inputArea" type="text" name="betComment" placeholder="for what?" /></li>
-    <li class="howMuch"><input class="howMuchTxt inputArea" type="text" name="betAmount" placeholder="1" /><span class="chipTxt"> chips </span><i class="fa fa-plus-circle"></i></li>
-  </ul>
-  <div class="companyInfo">brought to you by Sierra</div>
 </div>
+<div class="mainWrapper hidden">
+<div class="profile">
+  <!-- append profile template here-->
+</div>
+<div class="getChips">
+  <a href="#" class="btn btn-default chipClick">Claim Chips</a>
+
+</div>
+<span class="chipBox"><div class="bigChip">
+</div></span>
+<ul class="mainContent">
+  <li class="toWho"><div class="fa fa-user"></div><input class="inputArea toWhoTxt" type="text" name="reciever" placeholder="to who?" /></li>
+  <li class="forWhat"><input class="inputArea" type="text" name="betComment" placeholder="for what?" /></li>
+  <li class="howMuch"><input class="howMuchTxt inputArea" type="text" name="betAmount" placeholder="1" /><span class="chipTxt"> chips </span><i class="fa fa-plus-circle"></i></li>
+</ul>
+<div class="companyInfo">brought to you by Sierra</div>
+</div>
+
+<!-- Script -->
+<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="bower_components/underscore/underscore-min.js"></script>
+<script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
+<script type="text/javascript" src="bower_components/bootstrap/js/dropdown.js"></script>
+<script type="text/javascript" src="templates.js"></script>
+<script type="text/javascript" src="main.js"></script>
 </body>
 
-</script>
+>>>>>>> ef25ff69be532025eb9ec16e4d10ec52b2294542
 </html>
