@@ -14,9 +14,7 @@ $(document).ready (function() {
 
 var page = {
 
-
-  accountUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chips',
-
+  accountUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chips1',
 
   init: function() {
     page.getAccounts();
@@ -67,7 +65,8 @@ var page = {
     var newAccount = {
         username: $('input[name="user"]').val(),
         password: $('input[name="pass"]').val(),
-        chipTotal: 0
+        chipTotal: 0,
+        lastClicked: ""
       };
     page.createAccount(newAccount);
     $('input[name="user"]').val("");
@@ -110,7 +109,7 @@ var page = {
       if ($('#userNameInput').val() === el.username && $('#passwordInput').val() === el.password){
       $target.html(compiledTmpl(el));
       $('.pageWrapper').addClass('hidden');
-      $('.contentWrap').removeClass('hidden');
+      $('.mainWrapper').removeClass('hidden');
     }
     });
   },
@@ -169,5 +168,3 @@ var page = {
 
 
 };
-
-  
