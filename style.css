@@ -6,19 +6,22 @@
   font-family: 'Oswald', serif;
 }
 html {
-  background: url(Pokerbackdrop.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
 
+body {
+  background: url(Pokerbackdrop.jpg) no-repeat center center fixed;
+}
 .bigChip {
   width: 400px;
   height: 400px;
-  background-color: #f8f6e9;
   border-radius: 100%;
   margin: 0 auto;
+  box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.5);
+  background-color: red;
 }
 
 .profile {
@@ -40,6 +43,7 @@ html {
   background-color: #f8f6e9;
   border-radius: 20px;
   padding: 20px;
+  box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.5);
 }
 
 .toWho {
@@ -117,13 +121,10 @@ html {
   opacity: .5;
   text-align: center;
 }
-=======
+
 
 
 /* TINA */
-.getChips {
-  text-align: center;
-}
 
 html {
   width: 100%;
@@ -143,7 +144,6 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
   margin: 0 auto;
   width: 100%;
   height: 100%;
-  background-color: #0f2115;
   display: block; }
 .mainWrapper {
   display: block;
@@ -284,6 +284,25 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
   .signUpWrap button {
     width: 150px; }
 
+  .feedPost {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    align-items: center;
+    line-height: 50px;
+
+  }
+  .feedIcon {
+      font-size: 2em;
+      color: red;
+      width: 15%;
+    }
+  .feedTxt {
+    width: 85%;
+    height: 100%;
+    overflow: hidden;
+  }
+
 /*# sourceMappingURL=style.css.map */
 
 
@@ -304,5 +323,10 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
   -webkit-box-direction: normal;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
-          flex-direction: row;
+  flex-direction: row;
+  text-align: center;
+  background: linear-gradient(#bd3d3c 20%, #6c1b1a 90%, #bd3d3c);
+  width: 100%;
+  box-shadow: 5px 10px 15px black;
+  color: #f8f6e9;
 }
