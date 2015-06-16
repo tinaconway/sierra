@@ -21,6 +21,11 @@
     "bootstrap": "~3.3.5",
     "normalize": "~1.0.4",
     "normalize.css": "~3.0.3",
+
     "jquery.countdown": "~2.0.4"
+
+    "jquery.countdown": "~2.0.4",
+    "countdown": "https://github.com/kbwood/countdown.git#2.0.1"
+
   }
 }
