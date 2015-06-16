@@ -25,7 +25,7 @@ var page = {
   },
 
   initEvents: function() {
-
+  
     $('.signUpWrap').on('click', "#signUpButton", function(event) {
       event.preventDefault();
       var inputUserName = $('input[name="user"]').val();
