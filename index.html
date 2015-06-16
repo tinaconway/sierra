@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Document</title>
+  <title>Chipr</title>
+  <link href='http://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="bower_components/normalize.css/normalize.css">
   <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.min.css">
@@ -28,11 +29,27 @@
     </div>
   </div>
 </div>
-<div class ="headBox">
-  <!-- TEMPALTES -->
-</div>
 
-</body>
+<div class="mainWrapper hidden">
+<div class="profile">
+  <div class ="headBox">
+    <!-- TEMPALTES -->
+  </div>
+  <!-- append profile template here-->
+</div>
+<div class="getChips">
+  <a href="#" class="btn btn-default chipClick">Claim Chips</a>
+
+</div>
+<span class="chipBox"><div class="bigChip">
+</div></span>
+<ul class="mainContent">
+  <li class="toWho"><div class="fa fa-user"></div><input class="inputArea toWhoTxt" type="text" name="reciever" placeholder="to who?" /></li>
+  <li class="forWhat"><input class="inputArea" type="text" name="betComment" placeholder="for what?" /></li>
+  <li class="howMuch"><input class="howMuchTxt inputArea" type="text" name="betAmount" placeholder="1" /><span class="chipTxt"> chips </span><i class="fa fa-plus-circle"></i></li>
+</ul>
+<div class="companyInfo">brought to you by Sierra</div>
+</div>
 
 <!-- Script -->
 <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -41,5 +58,6 @@
 <script type="text/javascript" src="bower_components/bootstrap/js/dropdown.js"></script>
 <script type="text/javascript" src="templates.js"></script>
 <script type="text/javascript" src="main.js"></script>
+</body>
 
 </html>
