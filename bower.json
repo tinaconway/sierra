@@ -1,11 +1,7 @@
 {
-
-  "name": "sierra",
-  "version": "0.0.0",
-  "homepage": "https://github.com/tinaconway/sierra",
-
   "name": "chipr",
   "version": "0.0.0",
+  "homepage": "https://github.com/tinaconway/sierra",
   "authors": [
     "Sam Grayson <samuel.c.grayson17@gmail.com>"
   ],
@@ -18,15 +14,14 @@
     "tests"
   ],
   "dependencies": {
-
     "jquery": "~2.1.4",
     "underscore": "~1.8.3",
     "moment": "~2.10.3",
     "fontawesome": "~4.3.0",
     "bootstrap": "~3.3.5",
     "normalize": "~1.0.4",
-    "normalize.css": "~3.0.3"
-
-
+    "normalize.css": "~3.0.3",
+    "jquery.countdown": "~2.0.4",
+    "countdown": "https://github.com/kbwood/countdown.git#2.0.1"
   }
 }
