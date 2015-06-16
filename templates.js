@@ -7,3 +7,4 @@ templates.head = [
   "<div class = 'theChipTotal'><h1><%= chipTotal %>.<h1></div>"
 
 ]
+asdfasdf
