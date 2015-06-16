@@ -117,12 +117,11 @@ html {
   opacity: .5;
   text-align: center;
 }
-=======
 
-
-/* TINA */
-.getChips {
-  text-align: center;
+#refresh {
+  float: right;
+  padding-right: 15px;
+  font-size: 2em;
 }
 
 html {
