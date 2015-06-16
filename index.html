@@ -2,28 +2,54 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Chip'R</title>
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <title>Document</title>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="bower_components/normalize.css/normalize.css">
+  <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- TINA -->
-<div class="getChips">
-  <a href="#" class="btn btn-default chipClick">Claim Chips</a>
-
-</div>
 
 
+<!-- Sam Added -->
+  <div class="pageWrapper">
+  <div class="contentWidth">
+    <div class="title">
+      <h1>Chipr</h1>
+    </div>
+    <div class="loginWrap">
+      <div class="loginScreen">
+        <form class="signupForm" id="userNameForm"><i class="fa fa-life-ring"></i></i><input id="userNameInput" name="user" type="text" placeholder="Username" class="login userInput"></input></form>
+        <form class="signupForm" id="passwordForm"><i class="fa fa-unlock"></i><input id="passwordInput" name="pass" type="password" placeholder="Password" class="login passwordInput"></input></form>
+      </div>
+      <div class="signUpWrap">
+        <form><button id="logInButton" class="btn btn-default btn-md">Log In</button></form>
+        <form><button id="signUpButton" class="btn btn-default btn-md">Sign Up</button></form>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- TINA -->
+  <div class="getChips">
+    <a href="#" class="btn btn-default chipClick">Claim Chips</a>
+
+  </div>
 
 
 
 
-  <script src="bower_components/moment/moment.js"></script>
-  <script src="bower_components/jquery/dist/jquery.js"></script>
-  <script src="bower_components/underscore/underscore.js"></script>
-  <script type="text/javascript" src="template.js"></script>
-  <script src="main.js"></script>
+
+
+
+<!-- Script -->
+<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="bower_components/underscore/underscore-min.js"></script>
+<script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
+<script type="text/javascript" src="bower_components/bootstrap/js/dropdown.js"></script>
+<script type="text/javascript" src="templates.js"></script>
+<script type="text/javascript" src="main.js"></script>
 </body>
+
 </html>

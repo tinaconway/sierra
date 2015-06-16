@@ -1,9 +1,5 @@
-
-
-/* TINA */
-.getChips {
-  text-align: center;
-}
+$backgroundColor: #0f2115;
+$creamyChip : #f8f6e9;
 
 html {
   width: 100%;
@@ -24,7 +20,8 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
   width: 100%;
   height: 100%;
   background-color: #0f2115;
-  display: block; }
+  display: block;
+}
 
 .contentWrap {
   display: block; }
@@ -71,13 +68,12 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
   flex-direction: column;
   height: 200px;
   width: 100%; }
-
-.title h1 {
-  color: #f8f6e9;
-  text-shadow: 0px 2px 2px black;
-  font-size: 8vw;
-  margin: 0;
-  font-family: sans-serif; }
+  .title h1 {
+    color: $creamyChip;
+    text-shadow: 0px 2px 2px black;
+    font-size: 8vw;
+    margin: 0;
+    font-family: sans-serif; }
 
 .loginScreen {
   display: -webkit-box;
@@ -97,69 +93,63 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  background-color: #f8f6e9;
+  background-color: $creamyChip;
   height: 250px;
   width: 100%;
   border: 1px solid white;
-  border-bottom: 1px double black; }
+  border-bottom: 1px double black; 
+  }
+  .loginScreen form {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+    margin-top: 40px; }
+  .loginScreen #passwordForm {
+    margin-bottom: 30px; }
+  .loginScreen .login {
+    width: 80%;
+    height: 50px;
+    padding-left: 20px;
+    font-size: 1.2em;
+    font-style: italic; }
+  .loginScreen i {
+    margin-right: 20px;
+    font-size: 1.5em; }
 
-.loginScreen form {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  width: 100%;
-  height: 50px;
-  margin-top: 40px; }
-
-.loginScreen #passwordForm {
-  margin-bottom: 30px; }
-
-.loginScreen .login {
-  width: 80%;
-  height: 50px;
-  padding-left: 20px;
-  font-size: 1.2em;
-  font-style: italic; }
-
-.loginScreen i {
-  margin-right: 20px;
-  font-size: 1.5em; }
-
-.signUpWrap {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  background-color: #f8f6e9;
-  height: 50px;
-  width: 100%;
-  border: 2px solid white;
-  border-top: 0px; }
-  .signUpWrap #logInButton {
-    margin-right: 20px; }
-  .signUpWrap button {
-    width: 150px; }
-
-/*# sourceMappingURL=style.css.map */
+    .signUpWrap {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+              align-items: center;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+              justify-content: center;
+      -webkit-box-orient: horizontal;-webkit-box-direction: normal;-webkit-flex-direction: row;-ms-flex-direction: row;flex-direction: row;
+      background-color: $creamyChip;
+      height: 50px;
+      width: 100%;
+      border: 2px solid white;
+      border-top: 0px;
+      #logInButton {
+        margin-right: 20px;
+      }
+      button {
+        width: 150px;
+      }
+    }

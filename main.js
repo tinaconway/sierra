@@ -1,7 +1,9 @@
 var array = [];
+
 //TINA
 var date = new Date();
 var lastClickedMS = date.setDate(1);
+
 
 
 $(document).ready (function() {
@@ -12,7 +14,9 @@ $(document).ready (function() {
 
 var page = {
 
+
   accountUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chips',
+
 
   init: function() {
     page.getAccounts();
@@ -40,6 +44,7 @@ var page = {
       event.preventDefault();
       page.loadAccount();  // insert function to add name & chip total to page;
     });
+
     //TINA
     $('.getChips').on('click', $('.clickChip'), page.chipAllotment);
 
@@ -129,6 +134,7 @@ var page = {
 
     getTmpl: function (name) {
     return templates[name];
+
   },
   //TINA
   chipAllotment: function () {
@@ -163,3 +169,5 @@ var page = {
 
 
 };
+
+  

@@ -1,7 +1,14 @@
 {
+
   "name": "sierra",
   "version": "0.0.0",
   "homepage": "https://github.com/tinaconway/sierra",
+
+  "name": "chipr",
+  "version": "0.0.0",
+  "authors": [
+    "Sam Grayson <samuel.c.grayson17@gmail.com>"
+  ],
   "license": "MIT",
   "ignore": [
     "**/.*",
@@ -11,6 +18,7 @@
     "tests"
   ],
   "dependencies": {
+
     "jquery": "~2.1.4",
     "underscore": "~1.8.3",
     "moment": "~2.10.3",
@@ -18,5 +26,7 @@
     "bootstrap": "~3.3.5",
     "normalize": "~1.0.4",
     "normalize.css": "~3.0.3"
+
+  
   }
 }
