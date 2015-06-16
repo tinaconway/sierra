@@ -14,7 +14,7 @@ $(document).ready (function() {
 
 var page = {
 
-  accountUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chips1',
+  accountUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chips12345',
 
   init: function() {
     page.getAccounts();
@@ -25,7 +25,48 @@ var page = {
   },
 
   initEvents: function() {
-  
+
+
+
+    function plural(s, i) {
+    return i + ' ' + (i > 1 ? s + 's' : s);
+  }
+
+  function sundayDelta(offset) {
+    // offset is in hours, so convert to miliseconds
+    offset = offset ? offset * 60 * 60 * 1000 : 0;
+    var now = new Date(new Date().getTime() + offset);
+    var days = 7 - now.getDay();
+    var hours = 24 - now.getHours();
+    var minutes = 60 - now.getMinutes();
+    var seconds = 60 - now.getSeconds();
+    if(days === 1 && hours === 1 && minutes === 1 && seconds === 1){
+    
+    };
+    return [plural('day', days),
+            plural('hour', hours),
+            plural('minute', minutes),
+            plural('second', seconds)].join(' ');
+            function resetChips(reset){
+
+  }
+  }
+
+
+  // Save reference to the DIV
+  $refresh = $('#refresh');
+
+  $refresh.text('This page will refresh in ' + sundayDelta());
+
+  // Update DIV contents every second
+  setInterval(function() {
+    $refresh.text('This page will refresh in ' + sundayDelta());
+  }, 1000);
+
+
+
+
+
     $('.signUpWrap').on('click', "#signUpButton", function(event) {
       event.preventDefault();
       var inputUserName = $('input[name="user"]').val();
