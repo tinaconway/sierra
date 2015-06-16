@@ -21,7 +21,7 @@ body {
   border-radius: 100%;
   margin: 0 auto;
   box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.5);
-  background-color: red;
+  background-color: black;
 }
 
 .profile {
@@ -33,7 +33,7 @@ body {
 .chipBox {
   width: 100%;
   display: flex;
-  margin-top: 40px;
+  margin-top: 80px;
   margin-bottom: 40px;
 }
 
@@ -329,4 +329,5 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
   width: 100%;
   box-shadow: 5px 10px 15px black;
   color: #f8f6e9;
+  margin-bottom: 20px;
 }
