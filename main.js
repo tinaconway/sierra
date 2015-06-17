@@ -4,8 +4,8 @@ var endOfWeek;
 
 
 //TINA
-var date = new Date();
-var lastClickedMS = date.setDate(1);
+// var date = new Date();
+// var lastClickedMS = date.setDate(1);
 
 
 
@@ -84,6 +84,25 @@ var page = {
       console.log(userAdded);
       $('.toWhom').html(userAdded);
     });
+
+    $('.profile').on('click', ".btn-lg", function(event) {
+      event.preventDefault();
+      console.log("I'm working!");
+      $('.pageWrapper').removeClass('hidden');
+      $('.mainWrapper').addClass('hidden');
+    });
+
+    $('.howMuch').on('click', "#sendChips", function(event) {
+      event.preventDefault();
+      console.log("I'm working!");
+      var username = $('#user').attr('name');
+      var id = $('.templateWrapper').data('id');
+      var chipAmount = Number($('input[name="betAmount"]').val());
+      var senderChipTotal = Number($('.templateWrapper').attr('rel'));
+      page.removeChips(username, id, chipAmount, senderChipTotal);
+    });
+
+
   },
 
   //////////////////////
@@ -232,6 +251,50 @@ var page = {
         })
     })
 
-      },
+},
+
+
+    ///////////////
+    // CHIP FORM //
+    ///////////////
+
+  chipAdd: function (userAdd, id, chipAmount) {
+    var accountId = id;
+    var accountAdd = {
+      username: userAdd,
+      chipTotal: chipAmount
+    };
+    page.chipSend()
+  },
+  removeChips: function (userAdd, id, chipAmount, senderChipTotal) {
+    var accountId = id;
+    var chipCalculation;
+    if (senderChipTotal - chipAmount >= 0 && $('input[name="betAmount"]').val() !== "") {
+      chipCalculation = senderChipTotal - chipAmount;
+    }
+    else {
+      alert("You don't have enough chips or you didn't enter a chip amount!")
+    }
+    console.log(chipCalculation);
+    var accountAdd = {
+      username: userAdd,
+      chipTotal: chipCalculation.toString()
+    };
+    page.chipSend(accountAdd, accountId)
+  },
+
+  chipSend: function (accountAdd, accountId) {
+
+      $.ajax({
+        url: page.accountUrl + '/' + accountId,
+        method: 'PUT',
+        data: accountAdd,
+        success: function (accountAdd) {
+          console.log('removing Chips from account');
+        },
+        error: function (err) {
+        }
+      })
+    }
 
 };
