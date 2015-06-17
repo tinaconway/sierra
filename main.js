@@ -85,7 +85,7 @@ var page = {
 
     $('.howMuch').on('click', "#sendChips", function(event) {
       event.preventDefault();
-      console.log("I'm working!");
+      var usename;
 
     });
 
@@ -222,7 +222,7 @@ var page = {
         })
     })
 
-      },
+  },
 
 
     ///////////////
