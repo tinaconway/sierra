@@ -85,6 +85,10 @@ var page = {
       $('.toWhom').html(userAdded);
     });
 
+    $('.btn-group').on('click', ".clear", function(event) {
+      $('.toWhom').html("To whom?");
+    });
+
     $('.profile').on('click', ".btn-lg", function(event) {
       event.preventDefault();
       console.log("I'm working!");
@@ -100,14 +104,15 @@ var page = {
       var chipAmount = Number($('input[name="betAmount"]').val());
       var senderChipTotal = Number($('.templateWrapper').attr('rel'));
       page.removeChips(username, id, chipAmount, senderChipTotal);
+
     });
 
 
   },
 
-  //////////////////////
+  /////////////////////////
   // CHALLENGE FUNCTIONS //
-  //////////////////////
+  /////////////////////////
 
 
 
@@ -251,7 +256,9 @@ var page = {
         })
     })
 
-},
+  },
+
+
 
 
     ///////////////
