@@ -1,6 +1,10 @@
 var array = [];
 var accountData;
 var endOfWeek;
+var leader;
+var filteredChips;
+
+
 
 
 //TINA
@@ -23,23 +27,26 @@ var page = {
   init: function() {
     page.getAccounts();
     page.initEvents();
+    page.getLeader();
+    setInterval( function () {
+      $.ajax({
+        url: page.accountUrl,
+        method: 'GET',
+        success: function (data) {
+          page.addAccountToDOM(data);
+        },
+        error: function (err) {
+
+        }
+      });
+    } , 2000);
   },
 
   initStyles: function () {
   },
 
+
   initEvents: function() {
-
-
-
-    var filteredChips = accountData.filter(function(elm){
-      return elm.chipTotal;
-    })
-    .map(function(elm){
-      return elm.chipTotal;
-      console.log(elm.chipTotal);
-    });
-
 
 
     function plural(s, i) {
@@ -85,9 +92,17 @@ var page = {
 
     $('.signUpWrap').on('click', "#logInButton", function(event) {
       event.preventDefault();
-      page.loadAccount();  // insert function to add name & chip total to page;
-    });
+      page.loadAccount(); //insert function to add name & chip total to page;
+      var inputUserName = $('input[name="user"]').val();
+      var inputPassword = $('input[name="pass"]').val();
 
+      if(_.contains(array, inputUserName) === true && inputPassword.length >= 6) {
+          $('.pageWrapper').addClass('hidden');
+          $('.mainWrapper').removeClass('hidden');
+        } else {
+          alert("Create an account first");
+        }
+    });
 
     $('.dropdown-menu').on('click', ".users", function(event) {
       event.preventDefault();
@@ -96,6 +111,8 @@ var page = {
       console.log(userAdded);
       $('.toWhom').html(userAdded);
     });
+
+
 
     $('.btn-group').on('click', ".clear", function(event) {
       $('.toWhom').html("To whom?");
@@ -106,25 +123,33 @@ var page = {
       console.log("I'm working!");
       $('.pageWrapper').removeClass('hidden');
       $('.mainWrapper').addClass('hidden');
+      $('input[name="user"]').val("");
+      $('input[name="pass"]').val("");
+
     });
 
     $('.howMuch').on('click', "#sendChips", function(event) {
       event.preventDefault();
       console.log("I'm working!");
+      var userSend = $('.toWhom').html()
+      var userSendHastag = "#" + $('.toWhom').html();
+      var sendId = $(userSendHastag).data('id');
+      var chipAmountSend = Number($(userSend).attr('rel'));
       var username = $('#user').attr('name');
       var id = $('.templateWrapper').data('id');
       var chipAmount = Number($('input[name="betAmount"]').val());
       var senderChipTotal = Number($('.templateWrapper').attr('rel'));
       page.removeChips(username, id, chipAmount, senderChipTotal);
+      page.addChips(userSend, sendId, chipAmount, chipAmountSend);
 
     });
-
 
   },
 
   /////////////////////////
-  // CHALLENGE FUNCTIONS //
+  // LEADR FEEDR  //
   /////////////////////////
+
 
 
 
@@ -143,6 +168,7 @@ var page = {
         method: 'GET',
         success: function (data) {
           accountData = data;
+
         },
         error: function (err) {
 
@@ -150,10 +176,32 @@ var page = {
       });
     },
 
+
+    getLeader: function(event) {
+      $.ajax({
+          url: page.accountUrl,
+          method: 'GET',
+          success: function (data) {
+            leader = data.map(function(el){
+               return { user: el.username, chips: el.chipTotal }
+            })
+            leader = _.sortBy(leader,'chips').reverse();
+            console.log(leader);
+
+          },
+          error: function (err) {
+
+          }
+        });
+      },
+
+
   addAccountToDOM: function (post) {
     page.loadAccountToPage("head", post, $('.headBox'));
     page.loadAccountToDropdown("dropDown", post, $('.dropdown-menu'));
+    page.loadLeaderToPage("leaderFeeder", post, $('#leaderASDF'));
   },
+
 
   addAccount: function (event) {
     var newAccount = {
@@ -201,20 +249,27 @@ var page = {
     _.each(data, function (el){
       if ($('#userNameInput').val() === el.username && $('#passwordInput').val() === el.password){
       $target.html(compiledTmpl(el));
-      $('.pageWrapper').addClass('hidden');
-      $('.mainWrapper').removeClass('hidden');
     }
     });
   },
 
   loadAccountToDropdown: function (tmplName, data, $target) {
     var compiledTmpl = _.template(page.getTmpl(tmplName));
+    $('.dropdown-menu').html("");
     _.each(data, function (el){
       var userNameDrop = el.username
       $target.append(compiledTmpl(el));
     });
   },
 
+  loadLeaderToPage: function (tmplName, data, $target){
+    var compiledTmpl = _.template(page.getTmpl(tmplName));
+    _.each(data, function(el){
+      $('#leaderASDF').html("");
+      var singleLeader = el.user
+      $target.append(compiledTmpl(el));
+    });
+  },
 
   getAccounts: function(event) {
     $.ajax({
@@ -268,9 +323,9 @@ var page = {
         }
         })
     })
-
-
   },
+
+
 
 
 
@@ -279,14 +334,31 @@ var page = {
     // CHIP FORM //
     ///////////////
 
-  chipAdd: function (userAdd, id, chipAmount) {
+  addChips: function (userAdd, id, chipAmount, chipAmountSend) {
     var accountId = id;
+    var chipCalculation = chipAmountSend + chipAmount;
+
     var accountAdd = {
       username: userAdd,
-      chipTotal: chipAmount
+      chipTotal: chipAmount.toString()
     };
-    page.chipSend()
+    page.chipAdd(accountAdd, accountId);
   },
+
+  chipAdd: function (accountAdd, accountId) {
+
+      $.ajax({
+        url: page.accountUrl + '/' + accountId,
+        method: 'PUT',
+        data: accountAdd,
+        success: function (accountAdd) {
+          console.log('removing Chips from account');
+        },
+        error: function (err) {
+        }
+      })
+    },
+
   removeChips: function (userAdd, id, chipAmount, senderChipTotal) {
     var accountId = id;
     var chipCalculation;
@@ -301,10 +373,10 @@ var page = {
       username: userAdd,
       chipTotal: chipCalculation.toString()
     };
-    page.chipSend(accountAdd, accountId)
+    page.chipRemove(accountAdd, accountId)
   },
 
-  chipSend: function (accountAdd, accountId) {
+  chipRemove: function (accountAdd, accountId) {
 
       $.ajax({
         url: page.accountUrl + '/' + accountId,

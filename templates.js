@@ -68,5 +68,12 @@ templates.whoWon = [
 
 templates.dropDown = [
   "<div class = 'players' data-id='<%=_id%>'>",
-  "<h6 class = 'users'><%= username %></h6></div>"
+  "<h6 class = 'users' data-id='<%=_id%>' id='<%= username %>' rel'<%=chipTotal%>'><%= username %></h6></div>"
+
+].join("")
+
+templates.leaderFeeder = [
+
+  "<h3 class = 'feeder'>Current Leader: <%= leader[0].user %>! <%= leader[0].chips %> chips!</h3>",
+
 ].join("")

@@ -35,24 +35,46 @@
   <div class ="headBox">
     <!-- TEMPALTES -->
   </div>
-  <div id="refresh"></div>
+  <ul class = "refreshNLeader">
+    <li id="refresh"></li>
+    <li id="leaderASDF"></li>
+  </ul>
   <!-- append profile template here-->
-  <div class="scores">
-    
-    <!-- leaderboard template -->
-  </div>
+
   <button type="button" class="btn btn-default btn-lg logOut" id="logOut">
     <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> LogOut
   </button>
+
 <div>
 </div>
-<span class="chipBox"><div class="bigChip">
-</div></span>
+<span class="chipBox">
+  <div class="bigChip">
+    <div class="chipClick">
+    </div>
+  </div>
+</span>
 <ul class="mainContent">
 
   <!--append input template here-->
 
+<li class="toWho"><div class="fa fa-user"></div>
+  <div class="btn-group">
+  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+    <span class="toWhom">To whom?</span>
+    <span class="caret"></span>
+  </a>
+  <div class="clear"><i class="fa fa-times clear"></i></div>
+  <ul class="dropdown-menu">
+    <!-- dropdown menu links -->
+  </ul>
+
+</div>
+<li class="forWhat"><input class="inputArea" type="text" name="betComment" placeholder="for what?" /></li>
+<li class="howMuch"><input class="howMuchTxt inputArea" type="text" name="betAmount" placeholder="1" /><span class="chipTxt"> chips </span><i class="fa fa-plus-circle" id="sendChips"></i></li>
+
+  <!--or append feed template -->
 </ul>
+
 <div class="companyInfo">brought to you by Sierra</div>
 </div>
 
