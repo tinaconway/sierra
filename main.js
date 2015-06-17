@@ -2,6 +2,8 @@ var array = [];
 var passArray =[];
 var accountData;
 var endOfWeek;
+var leader;
+var filteredChips;
 var postData;
 
 //TINA
@@ -25,7 +27,11 @@ var page = {
   init: function() {
     page.getAccounts();
     page.initEvents();
+
+    page.getLeader();
+
     page.loadPosts();
+
     setInterval( function () {
       $.ajax({
         url: page.accountUrl,
@@ -37,7 +43,14 @@ var page = {
 
         }
       });
-    } ,2000);
+
+    } , 2000);
+
+    setInterval( function () {
+    page.getLeader();
+
+  }, 2000);
+
 
   //   setInterval( function () {
   //     $.ajax({
@@ -55,10 +68,13 @@ var page = {
 
 },
 
+
   initStyles: function () {
   },
 
+
   initEvents: function() {
+
 
     function plural(s, i) {
       return i + ' ' + (i > 1 ? s + 's' : s);
@@ -123,6 +139,8 @@ var page = {
       console.log(userAdded);
       $('.toWhom').html(userAdded);
     });
+
+
 
     $('.btn-group').on('click', ".clear", function(event) {
       $('.toWhom').html("To whom?");
@@ -192,8 +210,6 @@ var page = {
     });
 
   },
-
-
 
     //////////////////////
     // AJAX & FUNCTIONS //
@@ -315,6 +331,7 @@ var page = {
         method: 'GET',
         success: function (data) {
           accountData = data;
+
         },
         error: function (err) {
 
@@ -322,10 +339,33 @@ var page = {
       });
     },
 
+
+    getLeader: function(event) {
+      $.ajax({
+          url: page.accountUrl,
+          method: 'GET',
+          success: function (data) {
+            leader = data.map(function(el){
+               return { user: el.username, chips: Number(el.chipTotal) }
+               page.loadLeaderToPage("leaderFeeder", post, $('#leaderASDF'));
+            })
+          leader = _.sortBy(leader,'chips').reverse();
+            console.log(leader);
+
+          },
+          error: function (err) {
+
+          }
+        });
+      },
+
+
   addAccountToDOM: function (post) {
     page.loadAccountToPage("head", post, $('.headBox'));
     page.loadAccountToDropdown("dropDown", post, $('.dropdown-menu'));
+    page.loadLeaderToPage("leaderFeeder", post, $('#leaderASDF'));
   },
+
 
   addAccount: function (event) {
     var newAccount = {
@@ -380,6 +420,15 @@ var page = {
     $('.dropdown-menu').html("");
     _.each(data, function (el){
       var userNameDrop = el.username
+      $target.append(compiledTmpl(el));
+    });
+  },
+
+  loadLeaderToPage: function (tmplName, data, $target){
+    var compiledTmpl = _.template(page.getTmpl(tmplName));
+    _.each(data, function(el){
+      $('#leaderASDF').html("");
+      var singleLeader = el.user
       $target.append(compiledTmpl(el));
     });
   },
