@@ -56,6 +56,8 @@ body {
 
 .mainContent {
   width: 80%;
+  max-height: 400px;
+  overflow: scroll;
   margin: 0 auto;
   background-color: #f8f6e9;
   border-radius: 20px;
@@ -219,14 +221,43 @@ body {
 
 }
 
-.fa-plus-circle {
-  font-size: 2em;
+.sendChips {
+  font-size: 1.5em;
   opacity: .5;
   float: right;
-  margin-top: 30px;
+  margin-top: 10px;
+  margin-right: 25px;
+  color: rgb(55, 170, 26);
 }
 
-.fa-plus-circle:hover {
+.sendChips:hover {
+  color: rgb(28, 84, 14);
+  cursor: pointer;
+}
+
+.fa-plus-circle {
+  margin-left: 10px;
+}
+
+.fa-bomb {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.sendChallenge {
+  font-size: 1.5em;
+  opacity: .5;
+  float: right;
+  margin-top: 10px;
+  color: #bd3d3c;
+}
+
+.sendChallenge:hover {
+  color: #692121;
+  cursor: pointer;
+}
+
+.sendChallenge {
   opacity: 1;
 }
 
