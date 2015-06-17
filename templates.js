@@ -11,8 +11,20 @@ templates.head = [
 templates.challengeReport = [
   "<li class='feedPost'>",
     "<div class='fa fa-life-ring feedIcon'></div>",
-    "<div class='feedTxt'><%= challenger %> challenged <%= challengie %> for <%= chipTotal %> chips </div>",
-    "<div class='moreButton' rel='<%=description%>'>more</div>",
+    "<div class='feedTxt'><span id='init' name='<%=challenger%>' rel='<%=challengie%>' key='<%= chipTotal %>'></span><%= challenger %> challenged <%= challengie %> for <%= chipTotal %> chips </div>",
+    "<div class='buttonWrapper'>",
+      "<div class='moreButton' rel='<%=description%>'><i class='fa fa-gavel'></i></div>",
+    "</div>",
+  "</li>"
+].join("")
+
+templates.sendReport = [
+  "<li class='feedPost'>",
+    "<div class='fa fa-life-ring feedIcon'></div>",
+    "<div class='feedTxt'><span id='init' name='<%=challenger%>' rel='<%=challengie%>'></span><%= challenger %> sent <%= challengie %> <%= chipTotal %> chips </div>",
+    "<div class='buttonWrapper'>",
+      "<div class='moreSendButton' rel='<%=description%>'><i class='fa fa-paper-plane'></i></div>",
+    "</div>",
   "</li>"
 ].join("")
 
