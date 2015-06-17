@@ -11,7 +11,7 @@ templates.head = [
 templates.challengeReport = [
   "<li class='feedPost'>",
     "<div class='fa fa-life-ring feedIcon'></div>",
-    "<div class='feedTxt'><%= challenger => challenged <%= challengie => for <%= numberofChips => chips </div>",
+    "<div class='feedTxt'><%= challenger => challenged <%= challengie => for <%= chipTotal => chips </div>",
     "<div class='moreButton'>more</div>",
   "</li>"
 ].join("")
@@ -49,22 +49,9 @@ templates.moreInfo = [
   "</li>"
 ].join("")
 
-templates.whoWon = [
-  "<li class='backButton'>",
-  "<i class='fa fa-chevron-circle-left'></i>",
-  "</li>",
-  "<li class='whoWonText'>",
-  "who won?",
-  "</li>",
-  "<li class='userButtonBox'>",
-  "<div class='userButton'>",
-  "<%= challenger =>",
-  "</div>",
-  "<div class='userButton'>",
-  "<%= challengie =>",
-  "</div>",
-  "</li>"
-].join("")
+
+
+
 
 templates.dropDown = [
   "<div class = 'players' data-id='<%=_id%>'>",
