@@ -7,3 +7,12 @@ templates.head = [
   "Your Chip Total is: <%= chipTotal %> </h1>",
   "</div>"
 ].join("")
+
+templates.main = [
+  "div class = 'templateWrapperMain' data-id='<%=_id%'>",
+  "<h3><%= username %>",
+  "has sent ",
+  "<%= chipBet %>",
+  "to <%= recepient =>",
+  "</div>"
+].join("")

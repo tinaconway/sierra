@@ -9,11 +9,15 @@ html {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;
+  background-size: cover
 }
 
 body {
   background: url(Pokerbackdrop.jpg) no-repeat center center fixed;
+<<<<<<< HEAD
+=======
+  background-size: cover;
+>>>>>>> ba93e650cf957b1bad0935708b3b56612ec3073b
 }
 .bigChip {
   width: 400px;
@@ -329,4 +333,15 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
   width: 100%;
   box-shadow: 5px 10px 15px black;
   color: #f8f6e9;
+<<<<<<< HEAD
+=======
+}
+
+#refresh {
+  float: right;
+  color: #f8f6e9;
+  font-size: 18px;
+  margin-right: 20px;
+  margin-top: 20px;
+>>>>>>> ba93e650cf957b1bad0935708b3b56612ec3073b
 }
