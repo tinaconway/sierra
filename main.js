@@ -1,11 +1,10 @@
 var array = [];
+var passArray =[];
 var accountData;
 var endOfWeek;
 var leader;
 var filteredChips;
-
-
-
+var postData;
 
 //TINA
 // var date = new Date();
@@ -22,12 +21,17 @@ $(document).ready (function() {
 
 var page = {
 
-  accountUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chips12345',
+  accountUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chips123456',
+  commentsUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chip_comments',
 
   init: function() {
     page.getAccounts();
     page.initEvents();
+
     page.getLeader();
+
+    page.loadPosts();
+
     setInterval( function () {
       $.ajax({
         url: page.accountUrl,
@@ -40,6 +44,12 @@ var page = {
         }
       });
     } , 2000);
+
+    setInterval( function () {
+    page.getLeader();
+
+    }, 2000)
+
   },
 
   initStyles: function () {
@@ -96,12 +106,13 @@ var page = {
       var inputUserName = $('input[name="user"]').val();
       var inputPassword = $('input[name="pass"]').val();
 
-      if(_.contains(array, inputUserName) === true && inputPassword.length >= 6) {
+      _.each(accountData, function(el) {
+        if (el.username === inputUserName && el.password === inputPassword) {
           $('.pageWrapper').addClass('hidden');
           $('.mainWrapper').removeClass('hidden');
-        } else {
-          alert("Create an account first");
         }
+      });
+
     });
 
     $('.dropdown-menu').on('click', ".users", function(event) {
@@ -128,35 +139,114 @@ var page = {
 
     });
 
-    $('.howMuch').on('click', "#sendChips", function(event) {
+    $('.howMuch').on('click', ".sendChips", function(event) {
       event.preventDefault();
       console.log("I'm working!");
       var userSend = $('.toWhom').html()
-      var userSendHastag = "#" + $('.toWhom').html();
-      var sendId = $(userSendHastag).data('id');
-      var chipAmountSend = Number($(userSend).attr('rel'));
+      var userSendHashtag = "#" + $('.toWhom').html();
+      var sendId = $(userSendHashtag).data('id');
+      var chipAmountSend = Number($(userSendHashtag).attr('rel'));
+      console.log("amount send" + chipAmountSend);
       var username = $('#user').attr('name');
       var id = $('.templateWrapper').data('id');
       var chipAmount = Number($('input[name="betAmount"]').val());
       var senderChipTotal = Number($('.templateWrapper').attr('rel'));
+      console.log("chipAmount" + chipAmount);
+      console.log("senderChipTotal" + chipAmount);
       page.removeChips(username, id, chipAmount, senderChipTotal);
       page.addChips(userSend, sendId, chipAmount, chipAmountSend);
+      $('.feedPost').removeClass('hidden');
+      $('.toWho').addClass('hidden');
+    });
 
+    $('.howMuch').on('click', '.sendChallenge', function(event){
+      var userSend = $('.toWhom').html()
+      var description = $('input[name="betComment"]').val();
+      var username = $('#user').attr('name');
+      var chipAmount = Number($('input[name="betAmount"]').val());
+      page.addChallenge(userSend, description, username, chipAmount);
+      $('.feedPost').removeClass('hidden');
+      $('.toWho').addClass('hidden');
+
+    });
+
+    $('.bigChip').on('click','.chipClick', function(event) {
+      event.preventDefault();
+      $('.toWho').removeClass('hidden');
+      $('.feedPost').addClass('hidden');
     });
 
   },
 
-  /////////////////////////
-  // LEADR FEEDR  //
-  /////////////////////////
+    //////////////////////
+    // AJAX & FUNCTIONS //
+    //////////////////////
+
+
+      /////////////////////////
+      // CHALLENGE FUNCTIONS //
+      /////////////////////////
+
+
+  addChallenge: function(userSend, chipDescription, username, chipAmount) {
+    var newChallenge = {
+      challenger: username,
+      challengie: userSend,
+      chipTotal: chipAmount,
+      description: chipDescription
+    }
+
+    page.postChallenge(newChallenge);
+  },
+
+  postChallenge: function(newChallenge) {
+    $.ajax({
+      url: page.commentsUrl,
+      method: 'POST',
+      data: newChallenge,
+      success: function (data) {
+        console.log(data);
+        page.addPosttoDom(data);
+        console.log("success!!: added post", data);
+      },
+      error: function (err) {
+        console.log("error ", err);
+      }
+    });
+  },
+
+  loadPosts: function(event) {
+    $.ajax({
+        url: page.commentsUrl,
+        method: 'GET',
+        success: function (data) {
+          page.addAllPoststoDom(data);
+        },
+        error: function (err) {
+
+        }
+      });
+  },
+
+  addAllPoststoDom: function (allPosts) {
+    _.each(allPosts, function (el) {
+      page.addPosttoDom(el);
+    });
+  },
+
+  addPosttoDom: function(post) {
+    page.loadPostToPage("challengeReport", post, $('.mainContent'));
+  },
+
+  loadPostToPage: function (tmplName, data, $target) {
+    var compiledTmpl = _.template(page.getTmpl(tmplName));
+    console.log(data);
+      $target.prepend(compiledTmpl(data));
+
+    },
 
 
 
-
-
-  //////////////////////
-  // AJAX & FUNCTIONS //
-  //////////////////////
 
       ///////////////////////
       // ACCOUNT FUNCTIONS //
@@ -183,9 +273,10 @@ var page = {
           method: 'GET',
           success: function (data) {
             leader = data.map(function(el){
-               return { user: el.username, chips: el.chipTotal }
+               return { user: el.username, chips: Number(el.chipTotal) }
+               page.loadLeaderToPage("leaderFeeder", post, $('#leaderASDF'));
             })
-            leader = _.sortBy(leader,'chips').reverse();
+          leader = _.sortBy(leader,'chips').reverse();
             console.log(leader);
 
           },
@@ -235,8 +326,6 @@ var page = {
       method: 'GET',
       success: function (data) {
         page.addAccountToDOM(data);
-        $('input[name="user"]').val("");
-        $('input[name="pass"]').val("");
       },
       error: function (err) {
 
@@ -335,15 +424,15 @@ var page = {
     ///////////////
 
   addChips: function (userAdd, id, chipAmount, chipAmountSend) {
-    var accountId = id;
-    var chipCalculation = chipAmountSend + chipAmount;
-
-    var accountAdd = {
-      username: userAdd,
-      chipTotal: chipAmount.toString()
-    };
-    page.chipAdd(accountAdd, accountId);
-  },
+     var accountId = id;
+     var chipCalculation = chipAmountSend + chipAmount;
+     console.log(chipCalculation);
+     var accountAdd = {
+       username: userAdd,
+       chipTotal: chipCalculation.toString()
+     };
+     page.chipAdd(accountAdd, accountId);
+   },
 
   chipAdd: function (accountAdd, accountId) {
 
@@ -368,7 +457,6 @@ var page = {
     else {
       alert("You don't have enough chips or you didn't enter a chip amount!")
     }
-    console.log(chipCalculation);
     var accountAdd = {
       username: userAdd,
       chipTotal: chipCalculation.toString()

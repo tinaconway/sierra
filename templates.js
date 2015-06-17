@@ -73,7 +73,10 @@ templates.dropDown = [
 ].join("")
 
 templates.leaderFeeder = [
+  "<% if(leader[0].chips === 5 ){ %>",
+  "<p>Its a Tie! Make a bet, douchebags! </p>",
+  "<% }else{ %>",
+  "<h3 class = 'feeder'><i class='fa fa-trophy'></i><br />Current Leader: <%= leader[0].user %>! <br /><%= leader[0].chips %> chips!</h3><% } %>"
 
-  "<h3 class = 'feeder'>Current Leader: <%= leader[0].user %>! <%= leader[0].chips %> chips!</h3>",
 
 ].join("")
