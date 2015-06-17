@@ -30,6 +30,7 @@ var page = {
 
   initEvents: function() {
 
+
     function plural(s, i) {
       return i + ' ' + (i > 1 ? s + 's' : s);
     }
@@ -76,6 +77,14 @@ var page = {
       page.loadAccount();  // insert function to add name & chip total to page;
     });
 
+    $('.dropdown-menu').on('click', ".users", function(event) {
+      event.preventDefault();
+      var userAdded = $(this).html();
+      console.log("I'm working");
+      console.log(userAdded);
+      $('.toWhom').html(userAdded);
+    });
+
     $('.profile').on('click', ".btn-lg", function(event) {
       event.preventDefault();
       console.log("I'm working!");
@@ -93,7 +102,15 @@ var page = {
       page.removeChips(username, id, chipAmount, senderChipTotal);
     });
 
+
   },
+
+  //////////////////////
+  // CHALLENGE FUNCTIONS //
+  //////////////////////
+
+
+
 
   //////////////////////
   // AJAX & FUNCTIONS //
@@ -117,9 +134,9 @@ var page = {
     },
 
   addAccountToDOM: function (post) {
-    page.loadAccountToPage("head", post, $('.headBox')); // insert where to load template in the end of input
-  },                                                          // 1st input = template name
-                                                              // post input is the data coming from
+    page.loadAccountToPage("head", post, $('.headBox'));
+    page.loadAccountToDropdown("dropDown", post, $('.dropdown-menu'));
+  },
 
   addAccount: function (event) {
     var newAccount = {
@@ -170,6 +187,14 @@ var page = {
       $('.pageWrapper').addClass('hidden');
       $('.mainWrapper').removeClass('hidden');
     }
+    });
+  },
+
+  loadAccountToDropdown: function (tmplName, data, $target) {
+    var compiledTmpl = _.template(page.getTmpl(tmplName));
+    _.each(data, function (el){
+      var userNameDrop = el.username
+      $target.append(compiledTmpl(el));
     });
   },
 
