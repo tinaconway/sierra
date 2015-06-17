@@ -30,13 +30,17 @@ var page = {
 
   initEvents: function() {
 
+
+
     var filteredChips = accountData.filter(function(elm){
-      return elm.chipTotal && elm.username;
+      return elm.chipTotal;
     })
     .map(function(elm){
       return elm.chipTotal;
       console.log(elm.chipTotal);
     });
+
+
 
     function plural(s, i) {
       return i + ' ' + (i > 1 ? s + 's' : s);
@@ -83,6 +87,7 @@ var page = {
       event.preventDefault();
       page.loadAccount();  // insert function to add name & chip total to page;
     });
+
 
     $('.dropdown-menu').on('click', ".users", function(event) {
       event.preventDefault();
@@ -263,6 +268,7 @@ var page = {
         }
         })
     })
+
 
   },
 
