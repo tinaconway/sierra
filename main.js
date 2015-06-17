@@ -86,7 +86,11 @@ var page = {
     $('.howMuch').on('click', "#sendChips", function(event) {
       event.preventDefault();
       console.log("I'm working!");
-
+      var username = $('#user').attr('name');
+      var id = $('.templateWrapper').data('id');
+      var chipAmount = Number($('input[name="betAmount"]').val());
+      var senderChipTotal = Number($('.templateWrapper').attr('rel'));
+      page.removeChips(username, id, chipAmount, senderChipTotal);
     });
 
   },
@@ -222,7 +226,7 @@ var page = {
         })
     })
 
-};
+},
 
 
     ///////////////
@@ -237,6 +241,22 @@ var page = {
     };
     page.chipSend()
   },
+  removeChips: function (userAdd, id, chipAmount, senderChipTotal) {
+    var accountId = id;
+    var chipCalculation;
+    if (senderChipTotal - chipAmount >= 0 && $('input[name="betAmount"]').val() !== "") {
+      chipCalculation = senderChipTotal - chipAmount;
+    }
+    else {
+      alert("You don't have enough chips or you didn't enter a chip amount!")
+    }
+    console.log(chipCalculation);
+    var accountAdd = {
+      username: userAdd,
+      chipTotal: chipCalculation.toString()
+    };
+    page.chipSend(accountAdd, accountId)
+  },
 
   chipSend: function (accountAdd, accountId) {
 
@@ -245,7 +265,7 @@ var page = {
         method: 'PUT',
         data: accountAdd,
         success: function (accountAdd) {
-          console.log('adding Chips to account');
+          console.log('removing Chips from account');
         },
         error: function (err) {
         }
