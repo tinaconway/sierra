@@ -4,8 +4,8 @@ var endOfWeek;
 
 
 //TINA
-var date = new Date();
-var lastClickedMS = date.setDate(1);
+// var date = new Date();
+// var lastClickedMS = date.setDate(1);
 
 
 
@@ -29,6 +29,7 @@ var page = {
   },
 
   initEvents: function() {
+
 
     function plural(s, i) {
       return i + ' ' + (i > 1 ? s + 's' : s);
@@ -76,6 +77,18 @@ var page = {
       page.loadAccount();  // insert function to add name & chip total to page;
     });
 
+    $('.dropdown-menu').on('click', ".users", function(event) {
+      event.preventDefault();
+      var userAdded = $(this).html();
+      console.log("I'm working");
+      console.log(userAdded);
+      $('.toWhom').html(userAdded);
+    });
+
+    $('.btn-group').on('click', ".clear", function(event) {
+      $('.toWhom').html("To whom?");
+    });
+
     $('.profile').on('click', ".btn-lg", function(event) {
       event.preventDefault();
       console.log("I'm working!");
@@ -85,11 +98,24 @@ var page = {
 
     $('.howMuch').on('click', "#sendChips", function(event) {
       event.preventDefault();
-      var usename;
+      console.log("I'm working!");
+      var username = $('#user').attr('name');
+      var id = $('.templateWrapper').data('id');
+      var chipAmount = Number($('input[name="betAmount"]').val());
+      var senderChipTotal = Number($('.templateWrapper').attr('rel'));
+      page.removeChips(username, id, chipAmount, senderChipTotal);
 
     });
 
+
   },
+
+  /////////////////////////
+  // CHALLENGE FUNCTIONS //
+  /////////////////////////
+
+
+
 
   //////////////////////
   // AJAX & FUNCTIONS //
@@ -113,9 +139,9 @@ var page = {
     },
 
   addAccountToDOM: function (post) {
-    page.loadAccountToPage("head", post, $('.headBox')); // insert where to load template in the end of input
-  },                                                          // 1st input = template name
-                                                              // post input is the data coming from
+    page.loadAccountToPage("head", post, $('.headBox'));
+    page.loadAccountToDropdown("dropDown", post, $('.dropdown-menu'));
+  },
 
   addAccount: function (event) {
     var newAccount = {
@@ -166,6 +192,14 @@ var page = {
       $('.pageWrapper').addClass('hidden');
       $('.mainWrapper').removeClass('hidden');
     }
+    });
+  },
+
+  loadAccountToDropdown: function (tmplName, data, $target) {
+    var compiledTmpl = _.template(page.getTmpl(tmplName));
+    _.each(data, function (el){
+      var userNameDrop = el.username
+      $target.append(compiledTmpl(el));
     });
   },
 
@@ -225,6 +259,8 @@ var page = {
   },
 
 
+
+
     ///////////////
     // CHIP FORM //
     ///////////////
@@ -237,6 +273,22 @@ var page = {
     };
     page.chipSend()
   },
+  removeChips: function (userAdd, id, chipAmount, senderChipTotal) {
+    var accountId = id;
+    var chipCalculation;
+    if (senderChipTotal - chipAmount >= 0 && $('input[name="betAmount"]').val() !== "") {
+      chipCalculation = senderChipTotal - chipAmount;
+    }
+    else {
+      alert("You don't have enough chips or you didn't enter a chip amount!")
+    }
+    console.log(chipCalculation);
+    var accountAdd = {
+      username: userAdd,
+      chipTotal: chipCalculation.toString()
+    };
+    page.chipSend(accountAdd, accountId)
+  },
 
   chipSend: function (accountAdd, accountId) {
 
@@ -245,7 +297,7 @@ var page = {
         method: 'PUT',
         data: accountAdd,
         success: function (accountAdd) {
-          console.log('adding Chips to account');
+          console.log('removing Chips from account');
         },
         error: function (err) {
         }
