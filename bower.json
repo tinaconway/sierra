@@ -21,7 +21,10 @@
     "bootstrap": "~3.3.5",
     "normalize": "~1.0.4",
     "normalize.css": "~3.0.3",
-    "jquery.countdown": "~2.0.4"
+
+
+
+    
 
   }
 }

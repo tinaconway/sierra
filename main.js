@@ -30,7 +30,10 @@ var page = {
 
   initEvents: function() {
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 5db228bda2dfff11b33144dd4e1b2a9cd051750a
     function plural(s, i) {
       return i + ' ' + (i > 1 ? s + 's' : s);
     }
@@ -77,6 +80,8 @@ var page = {
       page.loadAccount();  // insert function to add name & chip total to page;
     });
 
+<<<<<<< HEAD
+=======
     $('.dropdown-menu').on('click', ".users", function(event) {
       event.preventDefault();
       var userAdded = $(this).html();
@@ -108,6 +113,7 @@ var page = {
     });
 
 
+>>>>>>> 5db228bda2dfff11b33144dd4e1b2a9cd051750a
   },
 
   /////////////////////////
@@ -255,6 +261,10 @@ var page = {
         }
         })
     })
+<<<<<<< HEAD
+
+      },
+=======
 
   },
 
@@ -303,5 +313,6 @@ var page = {
         }
       })
     }
+>>>>>>> 5db228bda2dfff11b33144dd4e1b2a9cd051750a
 
 };
