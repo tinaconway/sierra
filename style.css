@@ -334,9 +334,22 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
 }
 
 #refresh {
-  float: right;
+  float:left;
   color: #f8f6e9;
   font-size: 18px;
-  margin-right: 20px;
+  margin-left: 20px;
   margin-top: 20px;
+}
+
+.btn-lg {
+  float: right;
+  color: #black;
+  background-color:#f8f6e9;
+  font-size: 18px;
+  margin-right: 20px;
+  margin-top: 5px;
+}
+
+.btn-lg:focus {
+  outline: none;
 }
