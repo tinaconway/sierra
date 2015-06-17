@@ -4,8 +4,8 @@ var endOfWeek;
 
 
 //TINA
-var date = new Date();
-var lastClickedMS = date.setDate(1);
+// var date = new Date();
+// var lastClickedMS = date.setDate(1);
 
 
 
@@ -134,7 +134,15 @@ var page = {
       page.addChips(userSend, sendId, chipAmount, chipAmountSend);
 
     });
+
   },
+
+  /////////////////////////
+  // CHALLENGE FUNCTIONS //
+  /////////////////////////
+
+
+
 
   //////////////////////
   // AJAX & FUNCTIONS //
@@ -158,9 +166,9 @@ var page = {
     },
 
   addAccountToDOM: function (post) {
-    page.loadAccountToPage("head", post, $('.headBox')); // insert where to load template in the end of input
-  },                                                          // 1st input = template name
-                                                              // post input is the data coming from
+    page.loadAccountToPage("head", post, $('.headBox'));
+    page.loadAccountToDropdown("dropDown", post, $('.dropdown-menu'));
+  },
 
   addAccount: function (event) {
     var newAccount = {
@@ -208,7 +216,6 @@ var page = {
     _.each(data, function (el){
       if ($('#userNameInput').val() === el.username && $('#passwordInput').val() === el.password){
       $target.html(compiledTmpl(el));
-
     }
     });
   },
@@ -274,7 +281,7 @@ var page = {
         }
         })
     })
-
+    
   },
 
 
@@ -343,7 +350,3 @@ var page = {
     }
 
 };
-
-///////////////
-// CHIP FORM //
-///////////////
