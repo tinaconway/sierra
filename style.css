@@ -127,7 +127,8 @@ body {
 .clear {
   color: black;
   font-size: 1.2em;
-  margin-right: 20px;
+  margin-right: 10px;
+  margin-left: 7px;
 }
 
 .clear:hover {
