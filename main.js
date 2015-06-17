@@ -30,6 +30,13 @@ var page = {
 
   initEvents: function() {
 
+    var filteredChips = accountData.filter(function(elm){
+      return elm.chipTotal && elm.username;
+    })
+    .map(function(elm){
+      return elm.chipTotal;
+      console.log(elm.chipTotal);
+    });
 
     function plural(s, i) {
       return i + ' ' + (i > 1 ? s + 's' : s);
@@ -202,6 +209,7 @@ var page = {
       $target.append(compiledTmpl(el));
     });
   },
+
 
   getAccounts: function(event) {
     $.ajax({

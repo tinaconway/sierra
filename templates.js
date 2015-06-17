@@ -22,3 +22,10 @@ templates.dropDown = [
   "<div class = 'players' data-id='<%=_id%>'>",
   "<h6 class = 'users'><%= username %></h6></div>",
 ].join("")
+
+
+templates.scoreBoard = [
+  "<div class= 'scores' data-id='<%=_id%>'>",
+  "<h3 class= 'displayScores'><Math.max(<%= chipTotal %>.val())</h3>",
+  "</div>",
+].join("")
