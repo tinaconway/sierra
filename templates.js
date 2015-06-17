@@ -20,7 +20,7 @@ templates.resultReport = [
   "<li class='feedPost'>",
     "<div class='fa fa-life-ring feedIcon'></div>",
     "<div class='feedTxt'><%= winner => won <%= numberofChips  => chips from <%= loser =></div>",
-    "<div class='moreButton'>more</div>"
+    "<div class='moreButton'>more</div>",
   "</li>"
 ].join("")
 
@@ -55,7 +55,7 @@ templates.whoWon = [
   "</li>",
   "<li class='whoWonText'>",
   "who won?",
-  "</li>"
+  "</li>",
   "<li class='userButtonBox'>",
   "<div class='userButton'>",
   "<%= challenger =>",
@@ -64,8 +64,10 @@ templates.whoWon = [
   "<%= challengie =>",
   "</div>",
   "</li>"
+].join("")
 
 templates.dropDown = [
   "<div class = 'players' data-id='<%=_id%>'>",
-  "<h6 class = 'users'><%= username %></h6></div>"
+  "<h6 class = 'users' data-id='<%=_id%>' id='<%= username %>' rel'<%=chipTotal%>'><%= username %></h6></div>"
+
 ].join("")

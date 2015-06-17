@@ -6,9 +6,6 @@
   font-family: 'Oswald', serif;
 }
 html {
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
   background-size: cover
 }
 
@@ -17,10 +14,28 @@ body {
   background-size: cover;
 }
 .bigChip {
-  width: 400px;
-  height: 400px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+          justify-content: center;
+  height: 380px;
+  width: 380px;
   background-image: url("chipbutton.png");
+  background-repeat: no-repeat;
   margin: 0 auto;
+}
+
+.bigChip div {
+  height: 80%;
+  width: 80%;
 }
 
 .profile {
@@ -31,6 +46,9 @@ body {
 
 .chipBox {
   width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   margin-top: 80px;
   margin-bottom: 40px;
@@ -57,10 +75,19 @@ body {
   height: 50px;
   color: black;
   float: left;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   font-size: 2em;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .inputArea {
@@ -111,9 +138,19 @@ body {
 }
 
 .btn-group {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  flex-direction: row;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
 }
 
 .toWhom {
@@ -124,7 +161,8 @@ body {
 .clear {
   color: black;
   font-size: 1.2em;
-  margin-right: 20px;
+  margin-right: 10px;
+  margin-left: 7px;
 }
 
 .clear:hover {
@@ -203,7 +241,6 @@ body {
 
 
 #refresh {
-  float: right;
   padding-right: 15px;
   font-size: 2em;
 }
@@ -372,10 +409,16 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
     width: 150px; }
 
   .feedPost {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     width: 100%;
     height: 50px;
-    align-items: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
     line-height: 50px;
 
   }
@@ -393,6 +436,7 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
   .moreButton {
     width: 30%;
     height: 100%;
+    background: -webkit-linear-gradient(#bd3d3c 20%, #6c1b1a 90%, #bd3d3c);
     background: linear-gradient(#bd3d3c 20%, #6c1b1a 90%, #bd3d3c);
     border-left: 2px solid #bd3d3c;
   }
@@ -434,8 +478,14 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
   .userButtonBox {
     width: 100%;
     height: 50px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-between;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
   }
 
   .userButton {
@@ -450,9 +500,6 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
   .userButton:hover {
     background-color: red;
   }
-
-
-/*# sourceMappingURL=style.css.map */
 
 
 .headBox {
@@ -474,6 +521,7 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
   -ms-flex-direction: row;
   flex-direction: row;
   text-align: center;
+  background: -webkit-linear-gradient(#bd3d3c 20%, #6c1b1a 90%, #bd3d3c);
   background: linear-gradient(#bd3d3c 20%, #6c1b1a 90%, #bd3d3c);
   width: 100%;
   box-shadow: 5px 10px 15px black;
@@ -502,12 +550,4 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
 
 .btn-lg:focus {
   outline: none;
-}
-
-#refresh {
-  float: right;
-  color: #f8f6e9;
-  font-size: 18px;
-  margin-right: 20px;
-  margin-top: 20px;
 }
