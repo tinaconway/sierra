@@ -76,6 +76,19 @@ var page = {
       page.loadAccount();  // insert function to add name & chip total to page;
     });
 
+    $('.profile').on('click', ".btn-lg", function(event) {
+      event.preventDefault();
+      console.log("I'm working!");
+      $('.pageWrapper').removeClass('hidden');
+      $('.mainWrapper').addClass('hidden');
+    });
+
+    $('.howMuch').on('click', "#sendChips", function(event) {
+      event.preventDefault();
+      console.log("I'm working!");
+
+    });
+
   },
 
   //////////////////////
@@ -210,5 +223,33 @@ var page = {
     })
 
       },
+
+
+    ///////////////
+    // CHIP FORM //
+    ///////////////
+
+  chipAdd: function (userAdd, id, chipAmount) {
+    var accountId = id;
+    var accountAdd = {
+      username: userAdd,
+      chipTotal: chipAmount
+    };
+    page.chipSend()
+  },
+
+  chipSend: function (accountAdd, accountId) {
+
+      $.ajax({
+        url: page.accountUrl + '/' + accountId,
+        method: 'PUT',
+        data: accountAdd,
+        success: function (accountAdd) {
+          console.log('adding Chips to account');
+        },
+        error: function (err) {
+        }
+      })
+    }
 
 };
