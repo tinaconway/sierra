@@ -14,10 +14,8 @@ html {
 
 body {
   background: url(Pokerbackdrop.jpg) no-repeat center center fixed;
-<<<<<<< HEAD
-=======
   background-size: cover;
->>>>>>> ba93e650cf957b1bad0935708b3b56612ec3073b
+
 }
 .bigChip {
   width: 400px;
@@ -84,6 +82,7 @@ body {
 
 .players:hover {
   cursor: pointer;
+  color: #bd3d3c;
 }
 
 .btn-group {
@@ -93,6 +92,7 @@ body {
 }
 
 .dropdown-toggle {
+  position: relative;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -113,13 +113,31 @@ body {
   width: 100%;
 }
 
+.btn-group {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
 .toWhom {
   font-size: 1.8em;
+  color: #bd3d3c;
+}
+
+.clear {
   color: black;
+  font-size: 1.2em;
+  margin-right: 20px;
+}
+
+.clear:hover {
+  cursor: pointer;
+  color: #bd3d3c;
 }
 
 .btn .caret {
   margin-left: 10px;
+  color: black;
 }
 
 .dropdown-menu {
@@ -401,12 +419,8 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
   width: 100%;
   box-shadow: 5px 10px 15px black;
   color: #f8f6e9;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
   margin-bottom: 20px;
->>>>>>> 45a7fef3ad86e2651a21093cc1f96862f84868f7
+
 }
 
 #refresh {
@@ -415,7 +429,7 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
   font-size: 18px;
   margin-left: 20px;
   margin-top: 20px;
->>>>>>> ba93e650cf957b1bad0935708b3b56612ec3073b
+
 }
 
 .btn-lg {
