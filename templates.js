@@ -32,7 +32,7 @@ templates.resultReport = [
   "<li class='feedPost'>",
     "<div class='fa fa-life-ring feedIcon'></div>",
     "<div class='feedTxt'><%= winner => won <%= numberofChips  => chips from <%= loser =></div>",
-    "<div class='moreButton'>more</div>",
+      "<div class='moreButton'>more</div>",
   "</li>"
 ].join("")
 
@@ -50,20 +50,27 @@ templates.challengeForm = [
 ].join("")
 
 templates.moreInfo = [
-  "<li class='backButton'>",
-    "<i class='fa fa-chevron-circle-left' key='<% chipTotal %>'></i>",
-  "</li>",
+
+  "<div class='moreInfoWrapper'>",
   "<li class='moreInfoChallenge'>",
-    "<%= description %>",
+    "<i class='fa fa-chevron-circle-left' key='<%= chipTotal %>'></i>",
+    "</br>",
+    "</br>",
+    "</br>",
+    "<span id='descript'><%= description %></span>",
   "</li>",
-  "<li class='userButtonBox'>",
+  "<li class='userButtonBoxed'>",
+    "<div id='whoWon'>",
+      "Who won?",
+    "</div>",
     "<div class='userBtn1'>",
       "<%= challenger %>",
     "</div>",
     "<div class='userBtn2'>",
       "<%= challengie %>",
     "</div>",
-  "</li>"
+  "</li>",
+  "</div>"
 ].join("")
 
 templates.dropDown = [
@@ -77,6 +84,5 @@ templates.leaderFeeder = [
   "<p>Its a Tie! Make a bet, douchebags! </p>",
   "<% }else{ %>",
   "<h3 class = 'feeder'><i class='fa fa-trophy'></i><br />Current Leader: <%= leader[0].user %>! <br /><%= leader[0].chips %> chips!</h3><% } %>"
-
 
 ].join("")

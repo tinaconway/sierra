@@ -1,5 +1,6 @@
 var array = [];
 var passArray =[];
+
 var accountData;
 var endOfWeek;
 var leader;
@@ -21,7 +22,7 @@ $(document).ready (function() {
 
 var page = {
 
-  accountUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chips10',
+  accountUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chips11',
   commentsUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chip_comment2',
 
   init: function() {
@@ -208,6 +209,59 @@ var page = {
         var description = $(this).attr('value');
         console.log("description: " + description);
         page.challengeMore(challenger, challengie, chipTotal, description);
+        $('.mainContentInfo').removeClass('hidden');
+        $('.mainContent').addClass('hidden');
+    });
+
+    $('.mainContentInfo').on('click', '.userBtn1', function(event) {
+        var chipTotal = $('.fa-chevron-circle-left').attr('key');
+        console.log("chips: " + chipTotal);
+        var username = $('#user').attr('name');
+        console.log("user: " + username);
+        var user2 = $('.userBtn2').html();
+        console.log("btn2: " + user2);
+        var user1 = $('.userBtn1').html();
+        console.log("btn1: " + user1);
+        var commentDescription = $('#descript').html();
+        if (username === user1) {
+          page.getAccountChallenge(user1, chipTotal);
+          page.getAccountChallengeRemove(user2, chipTotal);
+          page.deletePost(user1, user2, commentDescription);
+        } else if (username === user2) {
+          page.getAccountChallenge(user1, chipTotal);
+          page.getAccountChallengeRemove(user2, chipTotal);
+          page.deletePost(user1, user2, commentDescription);
+          page.deletePost(user1, user2, commentDescription);
+        } else {
+          alert("You are not one of these users.")
+        }
+    });
+
+    $('.mainContentInfo').on('click', '.fa-chevron-circle-left', function(event) {
+      $('.mainContentInfo').addClass('hidden');
+      $('.mainContent').removeClass('hidden');
+    });
+
+    $('.mainContentInfo').on('click', '.userBtn2', function(event) {
+        var chipTotal = $('.fa-chevron-circle-left').attr('key');
+        console.log("chips: " + chipTotal);
+        var username = $('#user').attr('name');
+        console.log("user: " + username);
+        var user2 = $('.userBtn2').html();
+        console.log("btn2: " + user2);
+        var user1 = $('.userBtn1').html();
+        console.log("btn1: " + user1);
+        if (username === user2) {
+          page.getAccountChallenge(user2, chipTotal);
+          page.removeFromAccount(user1, chipTotal);
+          page.deletePost(user1, user2, commentDescription);
+        } else if (username === user1) {
+          page.getAccountChallenge(user2, chipTotal);
+          page.removeFromAccount(user1, chipTotal);
+          page.deletePost(user1, user2, commentDescription);
+        } else {
+          alert("You are not one of these users.")
+        }
     });
 
   },
@@ -220,6 +274,129 @@ var page = {
       /////////////////////////
       // CHALLENGE FUNCTIONS //
       /////////////////////////
+  //
+  // getPostDelete: function (user1, user2, descript) {
+  //   var description1 = descript
+  //   var userOne = user1
+  //   var userTwo = user2
+  //   var dataDelete
+  //   $.ajax({
+  //       url: page.commentsUrl,
+  //       method: 'GET',
+  //       success: function (data) {
+  //         _.each(data, function(el){
+  //           if (el.challenger === user1 && el.challengie === user2 && el.description2 = description1) {
+  //             dataDelete = el;
+  //           } else if (el.challeger ==== user2 && el.challengie === user1 && el.description2 = description1) {
+  //             dataDelete = el;
+  //           }
+  //         });
+  //         page.addToAccount(dataAdd);
+  //       },
+  //       error: function (err) {
+  //
+  //       }
+  //     });
+  // },
+
+  // deletePost: function (dataDelete) {
+  //   var id = dataDelete._id
+  //   $.ajax({
+  //     url: page.accountUrl + '/' + id,
+  //     method: 'DELETE',
+  //     data: dataDelete,
+  //     success: function (addData) {
+  //       console.log('adding challenge chips');
+  //     },
+  //     error: function (err) {
+  //     }
+  //   })
+  // },
+
+  getAccountChallenge: function (user, chipTotal) {
+    var chipAdded = chipTotal
+    var userAdd = user
+    var dataAdd
+    $.ajax({
+        url: page.accountUrl,
+        method: 'GET',
+        success: function (data) {
+          console.log(data);
+          _.each(data, function(el){
+            if (el.username === userAdd) {
+              dataAdd = el;
+            }
+          });
+          page.addToAccount(dataAdd, chipAdded);
+        },
+        error: function (err) {
+
+        }
+      });
+
+  },
+
+  getAccountChallengeRemove: function (user, chipTotal) {
+    var chipRemoved = chipTotal
+    var userRemove = user
+    var dataRemove
+    $.ajax({
+        url: page.accountUrl,
+        method: 'GET',
+        success: function (data) {
+          _.each(data, function(el){
+            if (el.username === userRemove) {
+              dataRemove = el;
+            }
+          });
+          page.removeFromAccount(dataRemove, chipRemoved);
+        },
+        error: function (err) {
+
+        }
+      });
+
+  },
+
+  addToAccount: function (dataAdd, chipAdded) {
+    var id = dataAdd._id;
+    var chipAmmount = dataAdd.chipTotal
+    var chipsQue = chipAdded;
+    var chipsAdded = Number(chipsQue) + Number(chipAmmount);
+    var addData = {
+      chipTotal: chipsAdded
+    }
+    $.ajax({
+      url: page.accountUrl + '/' + id,
+      method: 'PUT',
+      data: addData,
+      success: function (addData) {
+        console.log('adding challenge chips');
+      },
+      error: function (err) {
+      }
+    })
+  },
+
+  removeFromAccount: function (dataRemove, chipTotal) {
+    var id = dataRemove._id;
+    var chipAmmount = dataRemove.chipTotal
+    var chipsQue = chipTotal;
+    var chipsAdded = Number(chipAmmount) - Number(chipsQue);
+    var removeData = {
+      chipTotal: chipsAdded
+    }
+    $.ajax({
+      url: page.accountUrl + '/' + id,
+      method: 'PUT',
+      data: removeData,
+      success: function (removeData) {
+        console.log('adding challenge chips');
+      },
+      error: function (err) {
+      }
+    })
+  },
 
   challengeMore: function(challenged, challengy, chipTotes, descrip) {
     var challengeInfo = {
