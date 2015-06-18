@@ -51,30 +51,18 @@ templates.challengeForm = [
 
 templates.moreInfo = [
   "<li class='backButton'>",
-  "<i class='fa fa-chevron-circle-left'></i>",
+    "<i class='fa fa-chevron-circle-left'></i>",
   "</li>",
-  "<li class='forWhatGiven'>",
-  "<%= description =%>",
-  "</li>",
-  "<li class='completeButton'>",
-  "complete",
-  "</li>"
-].join("")
-
-templates.whoWon = [
-  "<li class='backButton'>",
-  "<i class='fa fa-chevron-circle-left'></i>",
-  "</li>",
-  "<li class='whoWonText'>",
-  "who won?",
+  "<li class='moreInfoChallenge'>",
+    "<%= description %>",
   "</li>",
   "<li class='userButtonBox'>",
-  "<div class='userButton'>",
-  "<%= challenger =>",
-  "</div>",
-  "<div class='userButton'>",
-  "<%= challengie =>",
-  "</div>",
+    "<div class='userBtn1'>",
+      "<%= challenger =>",
+    "</div>",
+    "<div class='userBbtn2>",
+      "<%= challengie =>",
+    "</div>",
   "</li>"
 ].join("")
 

@@ -29,7 +29,6 @@ var page = {
     page.initEvents();
 
     page.getLeader();
-
     page.loadPosts();
 
     setInterval( function () {
@@ -220,6 +219,10 @@ var page = {
       // CHALLENGE FUNCTIONS //
       /////////////////////////
 
+  challengeMore: function(challenger, challengie, chipTotal, description) {
+    
+  },
+
   addChallenge: function(userSend, chipDescription, username, chipAmount) {
     var newChallenge = {
       challenger: username,
@@ -350,7 +353,6 @@ var page = {
                page.loadLeaderToPage("leaderFeeder", post, $('#leaderASDF'));
             })
           leader = _.sortBy(leader,'chips').reverse();
-            console.log(leader);
 
           },
           error: function (err) {
