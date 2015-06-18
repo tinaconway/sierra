@@ -61,7 +61,6 @@ templates.moreInfo = [
   "</li>"
 ].join("")
 
-
 templates.whoWon = [
   "<li class='backButton'>",
   "<i class='fa fa-chevron-circle-left'></i>",
@@ -80,16 +79,20 @@ templates.whoWon = [
 ].join("")
 
 
+
+
+
 templates.dropDown = [
   "<div class = 'players' data-id='<%=_id%>'>",
-  "<h6 class = 'users' data-id='<%=_id%>' id='<%= username %>' rel'<%=chipTotal%>'><%= username %></h6></div>"
+  "<h6 class = 'users' data-id='<%=_id%>' id='<%= username %>' rel= '<%=chipTotal%>'><%= username %></h6></div>"
+
 ].join("")
-
-
 
 templates.leaderFeeder = [
   "<% if(leader[0].chips === 5 ){ %>",
   "<p>Its a Tie! Make a bet, douchebags! </p>",
   "<% }else{ %>",
   "<h3 class = 'feeder'><i class='fa fa-trophy'></i><br />Current Leader: <%= leader[0].user %>! <br /><%= leader[0].chips %> chips!</h3><% } %>"
+
+
 ].join("")

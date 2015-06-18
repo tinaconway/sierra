@@ -21,7 +21,7 @@ $(document).ready (function() {
 
 var page = {
 
-  accountUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chips1234567',
+  accountUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chips10',
   commentsUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chip_comment1',
 
   init: function() {
@@ -123,21 +123,12 @@ var page = {
       var inputUserName = $('input[name="user"]').val();
       var inputPassword = $('input[name="pass"]').val();
 
-
-      if(_.contains(array, inputUserName) === true && inputPassword.length >= 6) {
-          $('.pageWrapper').addClass('hidden');
-          $('.mainWrapper').removeClass('hidden');
-        } else {
-          alert("Create an account first");
-        }
-
       _.each(accountData, function(el) {
         if (el.username === inputUserName && el.password === inputPassword) {
           $('.pageWrapper').addClass('hidden');
           $('.mainWrapper').removeClass('hidden');
         }
       });
-
 
     });
 
@@ -169,7 +160,6 @@ var page = {
       event.preventDefault();
       console.log("I'm working!");
       var userSend = $('.toWhom').html()
-
       var userSendHashtag = "#" + $('.toWhom').html();
       var sendId = $(userSendHashtag).data('id');
       var chipAmountSend = Number($(userSendHashtag).attr('rel'));
@@ -180,14 +170,9 @@ var page = {
       var description = $('input[name="betComment"]').val();
       page.removeChips(username, id, chipAmount, senderChipTotal);
       page.addChips(userSend, sendId, chipAmount, chipAmountSend);
-    });
-    $('.bigChip').on('click', '.clickChip', function(event) {
-      $('.feedPost').removeClass('hidden');
-      $('.toWho').addClass('hidden');
       page.addPost(userSend, description, username, chipAmount);
       $('.mainContent').removeClass('hidden');
       $('.addForm').addClass('hidden');
-
     });
 
     $('.howMuch').on('click', '.sendChallenge', function(event){
@@ -212,9 +197,6 @@ var page = {
       $('.mainContent').addClass('hidden');
     });
 
-
-  },
-
     $('.mainContent').on('click','.moreButton', function(event){
         event.preventDefault();
         var challenger = $('#init').attr('name');
@@ -226,7 +208,6 @@ var page = {
         console.log("description: " + description);
         page.challengeMore(challenger, challengie, chipTotal, description);
     });
-
 
   },
 
@@ -516,16 +497,6 @@ var page = {
     ///////////////
 
   addChips: function (userAdd, id, chipAmount, chipAmountSend) {
-    var accountId = id;
-    var chipCalculation = chipAmountSend + chipAmount;
-
-    var accountAdd = {
-      username: userAdd,
-      chipTotal: chipAmount.toString()
-    };
-    page.chipAdd(accountAdd, accountId);
-  },
-chipAdd: function () {
      var accountId = id;
      var chipCalculation = chipAmountSend + chipAmount;
      console.log(chipCalculation);
@@ -535,7 +506,6 @@ chipAdd: function () {
      };
      page.chipAdd(accountAdd, accountId);
    },
-
 
   chipAdd: function (accountAdd, accountId) {
 
