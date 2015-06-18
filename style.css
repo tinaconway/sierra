@@ -71,6 +71,130 @@ body {
   box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.5);
 }
 
+.mainContentInfo {
+  width: 80%;
+  height: 400px;
+  margin: 0 auto;
+  background-color: #f8f6e9;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.5);
+}
+
+.moreInfoWrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+          align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.moreInfoChallenge {
+  height: 250px;
+  width: 100%;
+  overflow: scroll;
+  border-bottom: 1px solid lightgray;
+  font-size: 1.5em;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.userButtonBoxed {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+          flex-direction: row;
+  width: 50%;
+  height: 150px;
+  font-size: 1.2em;
+}
+
+.userButtonBoxed div {
+  margin: 15px;
+}
+
+#whoWon {
+  width:40%;
+}
+
+.userBtn1 {
+  padding: 15px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 10px;
+  position: relative;
+  width: 40%;
+  bottom: 5px;
+  height: 40%;
+  background: -webkit-linear-gradient(#bd3d3c 20%, #6c1b1a 90%, #bd3d3c);
+  background: linear-gradient(#bd3d3c 20%, #6c1b1a 90%, #bd3d3c);
+  border-left: 2px solid #bd3d3c;
+  cursor: pointer;
+  padding-left: 10px;
+  font-size: 2em;
+  color: white;
+}
+
+.userBtn2 {
+  padding: 15px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 10px;
+  position: relative;
+  width: 40%;
+  bottom: 5px;
+  height: 40%;
+  background: -webkit-linear-gradient(#bd3d3c 20%, #6c1b1a 90%, #bd3d3c);
+  background: linear-gradient(#bd3d3c 20%, #6c1b1a 90%, #bd3d3c);
+  border-left: 2px solid #bd3d3c;
+  cursor: pointer;
+  font-size: 2em;
+  color: white;
+}
+
 .addForm {
   width: 80%;
   max-height: 400px;
@@ -366,8 +490,14 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
   width: 100%;
   height: 40%;
   margin-bottom: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .title {
@@ -536,6 +666,37 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
   }
 
   .moreButton {
+    padding: 15px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+            justify-content: center;
+    border-radius: 10px;
+    position: relative;
+    width: 30%;
+    left: 30%;
+    bottom: 5px;
+    height: 100%;
+    background: -webkit-linear-gradient(#bd3d3c 20%, #6c1b1a 90%, #bd3d3c);
+    background: linear-gradient(#bd3d3c 20%, #6c1b1a 90%, #bd3d3c);
+    border-left: 2px solid #bd3d3c;
+    cursor: pointer;
+    padding-left: 10px;
+    font-size: 2em;
+    color: white;
+
+  }
+
+  .moreSendButton {
+    padding: 15px;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -695,6 +856,10 @@ h3{
   outline: none;
 }
 
+.fa-chevron-circle-left:hover {
+  cursor: pointer;
+}
+
 .homeButton {
   width: 50px;
   height: 50px;
@@ -704,13 +869,22 @@ h3{
   color: black;
   border: 2px solid black;
   border-radius: 6px;
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:-ms-flexbox;
   display:flex;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   font-size: 2em;
 }
 
 .homeButton:hover {
   color: #f8f6e9;
   border: 2px solid #f8f6e9;
-}
+}  
