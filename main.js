@@ -219,8 +219,20 @@ var page = {
       // CHALLENGE FUNCTIONS //
       /////////////////////////
 
-  challengeMore: function(challenger, challengie, chipTotal, description) {
-    
+  challengeMore: function(challenged, challengy, chipTotes, descrip) {
+    var challengeInfo = {
+      challenger: challenged,
+      challengie: challengy,
+      chipTotal: chipTotes,
+      description: descrip
+    }
+
+    page.postChallengeMore(challengeInfo);
+
+  },
+
+  postChallengeMore: function(challengeInfo) {
+    page.loadMoreChallengeToPage("moreInfo", challengeInfo);
   },
 
   addChallenge: function(userSend, chipDescription, username, chipAmount) {
@@ -316,6 +328,12 @@ var page = {
   },
 
   loadPostToPage: function (tmplName, data, $target) {
+    var compiledTmpl = _.template(page.getTmpl(tmplName));
+      $target.prepend(compiledTmpl(data));
+
+    },
+
+  loadMoreChallengeToPage: function (tmplName, data, $target) {
     var compiledTmpl = _.template(page.getTmpl(tmplName));
       $target.prepend(compiledTmpl(data));
 

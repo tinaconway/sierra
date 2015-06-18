@@ -51,7 +51,7 @@ templates.challengeForm = [
 
 templates.moreInfo = [
   "<li class='backButton'>",
-    "<i class='fa fa-chevron-circle-left'></i>",
+    "<i class='fa fa-chevron-circle-left' key='<% chipTotal %>'></i>",
   "</li>",
   "<li class='moreInfoChallenge'>",
     "<%= description %>",
@@ -65,10 +65,6 @@ templates.moreInfo = [
     "</div>",
   "</li>"
 ].join("")
-
-
-
-
 
 templates.dropDown = [
   "<div class = 'players' data-id='<%=_id%>'>",

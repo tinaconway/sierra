@@ -536,6 +536,7 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
   }
 
   .moreButton {
+    padding: 15px;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -561,7 +562,7 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
     padding-left: 10px;
     font-size: 2em;
     color: white;
-    
+
   }
 
   .backButton {
