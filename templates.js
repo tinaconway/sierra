@@ -66,6 +66,10 @@ templates.moreInfo = [
   "</li>"
 ].join("")
 
+
+
+
+
 templates.dropDown = [
   "<div class = 'players' data-id='<%=_id%>'>",
   "<h6 class = 'users' data-id='<%=_id%>' id='<%= username %>' rel'<%=chipTotal%>'><%= username %></h6></div>"

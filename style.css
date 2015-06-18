@@ -32,6 +32,11 @@ body {
   background-image: url("chipbutton.png");
   background-repeat: no-repeat;
   margin: 0 auto;
+  opacity: .7;
+}
+
+.bigChip:hover {
+  opacity: 1;
 }
 
 .bigChip div {
@@ -357,6 +362,14 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
   width: 100%;
   box-shadow: 5px 10px 15px black; }
 
+.logoBox{
+  width: 100%;
+  height: 40%;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
 .title {
   display: -webkit-box;
   display: -webkit-flex;
@@ -371,15 +384,19 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  height: 200px;
-  width: 100%; }
+  height: 20px;
+  width: 100%;
+  margin-bottom: 20px;
+  }
 
 .title h1 {
   color: #f8f6e9;
   text-shadow: 0px 2px 2px black;
-  font-size: 8vw;
+  font-size: 2em;
   margin: 0;
-  font-family: sans-serif; }
+  font-family: 'Alfa Slab One', sans-serif;
+  margin-bottom: 20px;
+  }
 
 .loginScreen {
   display: -webkit-box;
@@ -509,11 +526,11 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
 
   .feedIcon {
       font-size: 2em;
-      color: red;
+      color: #bd3d3c;
       width: 10%;
     }
   .feedTxt {
-    width: 60%;
+    width: 70%;
     height: 100%;
     overflow: hidden;
   }
@@ -544,7 +561,7 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
     padding-left: 10px;
     font-size: 2em;
     color: white;
-
+    
   }
 
   .backButton {
@@ -563,7 +580,7 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
   }
 
   .completeButton:hover {
-    background-color: red;
+    background-color: #bd3d3c;
   }
 
   .whoWonText{
@@ -604,7 +621,7 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
   }
 
   .userButton:hover {
-    background-color: red;
+    background-color: #bd3d3c;
   }
 
 
@@ -676,4 +693,24 @@ h3{
 
 .btn-lg:focus {
   outline: none;
+}
+
+.homeButton {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: black;
+  border: 2px solid black;
+  border-radius: 6px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+}
+
+.homeButton:hover {
+  color: #f8f6e9;
+  border: 2px solid #f8f6e9;
 }
