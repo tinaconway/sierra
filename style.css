@@ -14,6 +14,7 @@ body {
   background-size: cover;
 }
 .bigChip {
+  position: relative;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -31,6 +32,11 @@ body {
   background-image: url("chipbutton.png");
   background-repeat: no-repeat;
   margin: 0 auto;
+  opacity: .7;
+}
+
+.bigChip:hover {
+  opacity: 1;
 }
 
 .bigChip div {
@@ -65,6 +71,17 @@ body {
   box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.5);
 }
 
+.addForm {
+  width: 80%;
+  max-height: 400px;
+  overflow: scroll;
+  margin: 0 auto;
+  background-color: #f8f6e9;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.5);
+}
+
 .toWho {
   position: relative;
   width: 100%;
@@ -72,6 +89,10 @@ body {
   height: 50px;
 }
 
+.leaders {
+  width: 100px;
+  height: 100px;
+}
 .fa-user {
   width: 20%;
   height: 50px;
@@ -137,6 +158,12 @@ body {
   -ms-flex-direction: row;
           flex-direction: row;
   width: 100%;
+}
+
+.scores{
+  width: 100%;
+  height: 200px;
+  font-size: 100px;
 }
 
 .btn-group {
@@ -276,7 +303,10 @@ body {
   font-size: 2em;
 }
 
-
+.refreshNLeader{
+  width: 20%;
+  float: left;
+}
 
 
 /* TINA */
@@ -332,6 +362,14 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
   width: 100%;
   box-shadow: 5px 10px 15px black; }
 
+.logoBox{
+  width: 100%;
+  height: 40%;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
 .title {
   display: -webkit-box;
   display: -webkit-flex;
@@ -346,15 +384,19 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  height: 200px;
-  width: 100%; }
+  height: 20px;
+  width: 100%;
+  margin-bottom: 20px;
+  }
 
 .title h1 {
   color: #f8f6e9;
   text-shadow: 0px 2px 2px black;
-  font-size: 8vw;
+  font-size: 2em;
   margin: 0;
-  font-family: sans-serif; }
+  font-family: 'Alfa Slab One', sans-serif;
+  margin-bottom: 20px;
+  }
 
 .loginScreen {
   display: -webkit-box;
@@ -451,25 +493,75 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
         -ms-flex-align: center;
             align-items: center;
     line-height: 50px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid lightgray;
 
   }
+
+  .buttonWrapper {
+    position: relative;
+    float: right;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+            justify-content: center;
+    width: 100%;
+    height: 100%;
+
+  }
+
+  .moreButton:hover {
+    cursor: pointer;
+    background: -webkit-linear-gradient(#bd3d3c 20%, #370d0d 90%, #541b1a);
+    background: linear-gradient(#bd3d3c 20%, #370d0d 90%, #541b1a);
+  }
+
   .feedIcon {
       font-size: 2em;
-      color: red;
+      color: #bd3d3c;
       width: 10%;
     }
   .feedTxt {
-    width: 60%;
+    width: 70%;
     height: 100%;
     overflow: hidden;
   }
 
   .moreButton {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+            justify-content: center;
+    border-radius: 10px;
+    position: relative;
     width: 30%;
+    left: 30%;
+    bottom: 5px;
     height: 100%;
     background: -webkit-linear-gradient(#bd3d3c 20%, #6c1b1a 90%, #bd3d3c);
     background: linear-gradient(#bd3d3c 20%, #6c1b1a 90%, #bd3d3c);
     border-left: 2px solid #bd3d3c;
+    cursor: pointer;
+    padding-left: 10px;
+    font-size: 2em;
+    color: white;
+    
   }
 
   .backButton {
@@ -488,7 +580,7 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
   }
 
   .completeButton:hover {
-    background-color: red;
+    background-color: #bd3d3c;
   }
 
   .whoWonText{
@@ -529,7 +621,7 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
   }
 
   .userButton:hover {
-    background-color: red;
+    background-color: #bd3d3c;
   }
 
 
@@ -567,6 +659,26 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
   font-size: 18px;
   margin-left: 20px;
   margin-top: 20px;
+  width: 100%
+
+}
+
+#leaderASDF {
+  float:left;
+  color: #f8f6e9;
+  font-size: 18px;
+  margin-left: 20px;
+  margin-top: 20px;
+  opacity: .7;
+
+}
+
+h3{
+  font-size: 18px;
+}
+
+.chipClick {
+  cursor: pointer;
 
 }
 
@@ -581,4 +693,24 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
 
 .btn-lg:focus {
   outline: none;
+}
+
+.homeButton {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: black;
+  border: 2px solid black;
+  border-radius: 6px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+}
+
+.homeButton:hover {
+  color: #f8f6e9;
+  border: 2px solid #f8f6e9;
 }

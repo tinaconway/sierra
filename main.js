@@ -2,6 +2,8 @@ var array = [];
 var passArray =[];
 var accountData;
 var endOfWeek;
+var leader;
+var filteredChips;
 var postData;
 
 //TINA
@@ -19,13 +21,17 @@ $(document).ready (function() {
 
 var page = {
 
-  accountUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chips123456',
-  commentsUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chip_comments',
+  accountUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chips1234567',
+  commentsUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chip_comment1',
 
   init: function() {
     page.getAccounts();
     page.initEvents();
+
+    page.getLeader();
+
     page.loadPosts();
+
     setInterval( function () {
       $.ajax({
         url: page.accountUrl,
@@ -37,13 +43,38 @@ var page = {
 
         }
       });
+
     } , 2000);
-  },
+
+    setInterval( function () {
+    page.getLeader();
+
+  }, 2000);
+
+
+  //   setInterval( function () {
+  //     $.ajax({
+  //       url: page.commentsUrl,
+  //       method: 'GET',
+  //         success: function (data) {
+  //           var sortedPosts = _.sortBy(data, "dt");
+  //           page.addAllPoststoDom(sortedPosts);
+  //       },
+  //         error: function (err) {
+  //
+  //       }
+  //     });
+  // },2000);
+
+},
+
 
   initStyles: function () {
   },
 
+
   initEvents: function() {
+
 
     function plural(s, i) {
       return i + ' ' + (i > 1 ? s + 's' : s);
@@ -118,6 +149,8 @@ var page = {
       $('.toWhom').html(userAdded);
     });
 
+
+
     $('.btn-group').on('click', ".clear", function(event) {
       $('.toWhom').html("To whom?");
     });
@@ -140,45 +173,62 @@ var page = {
       var userSendHashtag = "#" + $('.toWhom').html();
       var sendId = $(userSendHashtag).data('id');
       var chipAmountSend = Number($(userSendHashtag).attr('rel'));
-      console.log("amount send" + chipAmountSend);
-
       var username = $('#user').attr('name');
       var id = $('.templateWrapper').data('id');
       var chipAmount = Number($('input[name="betAmount"]').val());
       var senderChipTotal = Number($('.templateWrapper').attr('rel'));
-      console.log("chipAmount" + chipAmount);
-      console.log("senderChipTotal" + chipAmount);
+      var description = $('input[name="betComment"]').val();
       page.removeChips(username, id, chipAmount, senderChipTotal);
       page.addChips(userSend, sendId, chipAmount, chipAmountSend);
-
-
     });
     $('.bigChip').on('click', '.clickChip', function(event) {
       $('.feedPost').removeClass('hidden');
       $('.toWho').addClass('hidden');
+      page.addPost(userSend, description, username, chipAmount);
+      $('.mainContent').removeClass('hidden');
+      $('.addForm').addClass('hidden');
+
     });
 
     $('.howMuch').on('click', '.sendChallenge', function(event){
-      var userSend = $('.toWhom').html()
+      var userSend = $('.toWhom').html();
       var description = $('input[name="betComment"]').val();
       var username = $('#user').attr('name');
       var chipAmount = Number($('input[name="betAmount"]').val());
-      page.addChallenge(userSend, description, username, chipAmount);
-      $('.feedPost').removeClass('hidden');
-      $('.toWho').addClass('hidden');
+      var senderChipTotal = Number($('.templateWrapper').attr('rel'));
+      if (senderChipTotal - chipAmount >= 0 && $('input[name="betAmount"]').val() !== "") {
+        page.addChallenge(userSend, description, username, chipAmount);
+      } else {
+        alert("Get more coins!");
+      }
+      $('.mainContent').removeClass('hidden');
+      $('.addForm').addClass('hidden');
 
     });
 
     $('.bigChip').on('click','.chipClick', function(event) {
       event.preventDefault();
-      $('.toWho').removeClass('hidden');
-      $('.feedPost').addClass('hidden');
+      $('.addForm').removeClass('hidden');
+      $('.mainContent').addClass('hidden');
     });
 
 
   },
 
+    $('.mainContent').on('click','.moreButton', function(event){
+        event.preventDefault();
+        var challenger = $('#init').attr('name');
+        var challengie = $('#init').attr('rel');
+        var chipTotal = $('#init').attr('key');
+        console.log("challenger: " + challenger);
+        console.log("challengie: " + challengie);
+        var description = $('.moreButton').attr('rel');
+        console.log("description: " + description);
+        page.challengeMore(challenger, challengie, chipTotal, description);
+    });
 
+
+  },
 
     //////////////////////
     // AJAX & FUNCTIONS //
@@ -189,16 +239,30 @@ var page = {
       // CHALLENGE FUNCTIONS //
       /////////////////////////
 
-
   addChallenge: function(userSend, chipDescription, username, chipAmount) {
     var newChallenge = {
       challenger: username,
       challengie: userSend,
       chipTotal: chipAmount,
-      description: chipDescription
+      description: chipDescription,
+      dt: moment().format('MMMM Do, h:mm:ss a'),
+      post: "challenge"
     }
 
     page.postChallenge(newChallenge);
+  },
+
+  addPost: function(userSend, chipDescription, username, chipAmount) {
+    var newChallenge = {
+      challenger: username,
+      challengie: userSend,
+      chipTotal: chipAmount,
+      description: chipDescription,
+      dt: moment().format('MMMM Do, h:mm:ss a'),
+      post: "sent"
+    }
+
+    page.postSend(newChallenge);
   },
 
   postChallenge: function(newChallenge) {
@@ -217,12 +281,29 @@ var page = {
     });
   },
 
+  postSend: function(newChallenge) {
+    $.ajax({
+      url: page.commentsUrl,
+      method: 'POST',
+      data: newChallenge,
+      success: function (data) {
+        console.log(data);
+        page.addSendPosttoDom(data);
+        console.log("success!!: added post", data);
+      },
+      error: function (err) {
+        console.log("error ", err);
+      }
+    });
+  },
+
   loadPosts: function(event) {
     $.ajax({
         url: page.commentsUrl,
         method: 'GET',
         success: function (data) {
-          page.addAllPoststoDom(data);
+          var sortedPosts = _.sortBy(data, "dt");
+          page.addAllPoststoDom(sortedPosts);
         },
         error: function (err) {
 
@@ -231,8 +312,13 @@ var page = {
   },
 
   addAllPoststoDom: function (allPosts) {
+    $('.mainContent').html("");
     _.each(allPosts, function (el) {
-      page.addPosttoDom(el);
+        if (el.post === "challenge") {
+          page.addPosttoDom(el);
+        } else {
+          page.addSendPosttoDom(el);
+        }
     });
   },
 
@@ -240,9 +326,13 @@ var page = {
     page.loadPostToPage("challengeReport", post, $('.mainContent'));
   },
 
+
+  addSendPosttoDom: function(post) {
+    page.loadPostToPage("sendReport", post, $('.mainContent'));
+  },
+
   loadPostToPage: function (tmplName, data, $target) {
     var compiledTmpl = _.template(page.getTmpl(tmplName));
-    console.log(data);
       $target.prepend(compiledTmpl(data));
 
     },
@@ -260,6 +350,7 @@ var page = {
         method: 'GET',
         success: function (data) {
           accountData = data;
+
         },
         error: function (err) {
 
@@ -267,10 +358,33 @@ var page = {
       });
     },
 
+
+    getLeader: function(event) {
+      $.ajax({
+          url: page.accountUrl,
+          method: 'GET',
+          success: function (data) {
+            leader = data.map(function(el){
+               return { user: el.username, chips: Number(el.chipTotal) }
+               page.loadLeaderToPage("leaderFeeder", post, $('#leaderASDF'));
+            })
+          leader = _.sortBy(leader,'chips').reverse();
+            console.log(leader);
+
+          },
+          error: function (err) {
+
+          }
+        });
+      },
+
+
   addAccountToDOM: function (post) {
     page.loadAccountToPage("head", post, $('.headBox'));
     page.loadAccountToDropdown("dropDown", post, $('.dropdown-menu'));
+    page.loadLeaderToPage("leaderFeeder", post, $('#leaderASDF'));
   },
+
 
   addAccount: function (event) {
     var newAccount = {
@@ -325,6 +439,15 @@ var page = {
     $('.dropdown-menu').html("");
     _.each(data, function (el){
       var userNameDrop = el.username
+      $target.append(compiledTmpl(el));
+    });
+  },
+
+  loadLeaderToPage: function (tmplName, data, $target){
+    var compiledTmpl = _.template(page.getTmpl(tmplName));
+    _.each(data, function(el){
+      $('#leaderASDF').html("");
+      var singleLeader = el.user
       $target.append(compiledTmpl(el));
     });
   },
