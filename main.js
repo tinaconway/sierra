@@ -153,7 +153,7 @@ var page = {
 
 
     });
-
+    $('.bigChip').on('click', '.clickChip', function(event) {
       $('.feedPost').removeClass('hidden');
       $('.toWho').addClass('hidden');
     });
@@ -393,7 +393,6 @@ var page = {
     ///////////////
 
   addChips: function (userAdd, id, chipAmount, chipAmountSend) {
-<<<<<<< HEAD
     var accountId = id;
     var chipCalculation = chipAmountSend + chipAmount;
 
@@ -403,7 +402,7 @@ var page = {
     };
     page.chipAdd(accountAdd, accountId);
   },
-
+chipAdd: function () {
      var accountId = id;
      var chipCalculation = chipAmountSend + chipAmount;
      console.log(chipCalculation);

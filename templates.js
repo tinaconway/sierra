@@ -51,7 +51,7 @@ templates.moreInfo = [
   "</li>"
 ].join("")
 
-<<<<<<< HEAD
+
 templates.whoWon = [
   "<li class='backButton'>",
   "<i class='fa fa-chevron-circle-left'></i>",
@@ -72,7 +72,7 @@ templates.whoWon = [
 templates.dropDown = [
   "<div class = 'players' data-id='<%=_id%>'>",
   "<h6 class = 'users' data-id='<%=_id%>' id='<%= username %>' rel'<%=chipTotal%>'><%= username %></h6></div>"
-
+].join("")
 
 templates.dropDown = [
   "<div class = 'players' data-id='<%=_id%>'>",
