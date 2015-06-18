@@ -21,8 +21,8 @@ $(document).ready (function() {
 
 var page = {
 
-  accountUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chips1234567',
-  commentsUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chip_comment1',
+  accountUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chips10',
+  commentsUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chip_comment2',
 
   init: function() {
     page.getAccounts();
@@ -162,6 +162,7 @@ var page = {
       var userSendHashtag = "#" + $('.toWhom').html();
       var sendId = $(userSendHashtag).data('id');
       var chipAmountSend = Number($(userSendHashtag).attr('rel'));
+      console.log(chipAmountSend);
       var username = $('#user').attr('name');
       var id = $('.templateWrapper').data('id');
       var chipAmount = Number($('input[name="betAmount"]').val());
@@ -198,12 +199,13 @@ var page = {
 
     $('.mainContent').on('click','.moreButton', function(event){
         event.preventDefault();
-        var challenger = $('#init').attr('name');
-        var challengie = $('#init').attr('rel');
-        var chipTotal = $('#init').attr('key');
+        var challenger = $(this).attr('name');
+        var challengie = $(this).attr('rel');
+        var chipTotal = $(this).attr('key');
+        console.log("key: "+ chipTotal);
         console.log("challenger: " + challenger);
         console.log("challengie: " + challengie);
-        var description = $('.moreButton').attr('rel');
+        var description = $(this).attr('value');
         console.log("description: " + description);
         page.challengeMore(challenger, challengie, chipTotal, description);
     });
@@ -232,7 +234,7 @@ var page = {
   },
 
   postChallengeMore: function(challengeInfo) {
-    page.loadMoreChallengeToPage("moreInfo", challengeInfo);
+    page.loadMoreChallengeToPage("moreInfo", challengeInfo, $(".mainContentInfo"));
   },
 
   addChallenge: function(userSend, chipDescription, username, chipAmount) {
@@ -335,8 +337,7 @@ var page = {
 
   loadMoreChallengeToPage: function (tmplName, data, $target) {
     var compiledTmpl = _.template(page.getTmpl(tmplName));
-      $target.prepend(compiledTmpl(data));
-
+      $target.html(compiledTmpl(data));
     },
 
 
