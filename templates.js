@@ -11,9 +11,9 @@ templates.head = [
 templates.challengeReport = [
   "<li class='feedPost'>",
     "<div class='fa fa-life-ring feedIcon'></div>",
-    "<div class='feedTxt'><span id='init' name='<%=challenger%>' rel='<%=challengie%>' key='<%= chipTotal %>'></span><%= challenger %> challenged <%= challengie %> for <%= chipTotal %> chips </div>",
+    "<div class='feedTxt'><%= challenger %> challenged <%= challengie %> for <%= chipTotal %> chips </div>",
     "<div class='buttonWrapper'>",
-      "<div class='moreButton' rel='<%=description%>'><i class='fa fa-gavel'></i></div>",
+      "<div class='moreButton' id='init' name='<%=challenger%>' rel='<%=challengie%>' key='<%= chipTotal %>' value='<%=description%>'><i class='fa fa-gavel'></i></div>",
     "</div>",
   "</li>"
 ].join("")
@@ -51,40 +51,24 @@ templates.challengeForm = [
 
 templates.moreInfo = [
   "<li class='backButton'>",
-  "<i class='fa fa-chevron-circle-left'></i>",
+    "<i class='fa fa-chevron-circle-left' key='<% chipTotal %>'></i>",
   "</li>",
-  "<li class='forWhatGiven'>",
-  "<%= description =%>",
-  "</li>",
-  "<li class='completeButton'>",
-  "complete",
-  "</li>"
-].join("")
-
-templates.whoWon = [
-  "<li class='backButton'>",
-  "<i class='fa fa-chevron-circle-left'></i>",
-  "</li>",
-  "<li class='whoWonText'>",
-  "who won?",
+  "<li class='moreInfoChallenge'>",
+    "<%= description %>",
   "</li>",
   "<li class='userButtonBox'>",
-  "<div class='userButton'>",
-  "<%= challenger =>",
-  "</div>",
-  "<div class='userButton'>",
-  "<%= challengie =>",
-  "</div>",
+    "<div class='userBtn1'>",
+      "<%= challenger %>",
+    "</div>",
+    "<div class='userBtn2'>",
+      "<%= challengie %>",
+    "</div>",
   "</li>"
 ].join("")
-
-
-
-
 
 templates.dropDown = [
   "<div class = 'players' data-id='<%=_id%>'>",
-  "<h6 class = 'users' data-id='<%=_id%>' id='<%= username %>' rel'<%=chipTotal%>'><%= username %></h6></div>"
+  "<h6 class = 'users' data-id='<%=_id%>' id='<%= username %>' rel='<%=chipTotal%>'><%= username %></h6></div>"
 
 ].join("")
 
